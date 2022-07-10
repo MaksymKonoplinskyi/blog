@@ -47,7 +47,7 @@ export const Home = () => {
 
                 isEditable
               />
-            )
+            ) 
           )}
         </Grid>
         <Grid xs={4} item>
