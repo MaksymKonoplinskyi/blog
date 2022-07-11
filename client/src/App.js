@@ -18,7 +18,7 @@ React.useEffect(() => {
 }, [])
 
   return (
-    <>
+    <> 
       <Header />
       <Container maxWidth="lg">
         <Routes>

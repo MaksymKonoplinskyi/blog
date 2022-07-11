@@ -19,6 +19,7 @@ export const Login = (values) => {
       email: 'gran7777777@gmail.com',
       password: '123456',
     },
+    mode: 'all'
   })
 
   const onSubmit = async (values) => {
@@ -33,7 +34,6 @@ export const Login = (values) => {
     }
   }
 
-  // React.useEffect()
 
   if (isAuth) {
     return <Navigate to="/" />
@@ -56,7 +56,7 @@ export const Login = (values) => {
         <TextField
           className={styles.field}
           label="Пароль"
-          error={Boolean(errors.email?.message)}
+          error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
           {...register('password', { required: 'Укажите пароль' })}
           fullWidth />

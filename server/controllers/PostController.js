@@ -9,7 +9,7 @@ export const getLastTags = async (req, res) => {
             .flat())
             
         const tags = [...uniqTags].slice(0, 5);
-        console.log(tags);
+        // console.log(tags);
         // posts
         //     .map((obj) => obj.tags)
         //     .flat()
@@ -116,7 +116,7 @@ export const create = async (req, res) => {
             title: req.body.title,
             text: req.body.text,
             imageUrl: req.body.imageUrl,
-            tags: req.body.tags,/*.split(',')*/
+            tags: req.body.tags.split(','),
             user: req.userId,
         });
 
@@ -144,7 +144,7 @@ export const update = async (req, res) => {
                 text: req.body.text,
                 imageUrl: req.body.imageUrl,
                 user: req.userId,
-                tags: req.body.tags/*.split(',')*/,
+                tags: req.body.tags.split(','),
             },
         );
 
