@@ -9,11 +9,6 @@ export const getLastTags = async (req, res) => {
             .flat())
             
         const tags = [...uniqTags].slice(0, 5);
-        // console.log(tags);
-        // posts
-        //     .map((obj) => obj.tags)
-        //     .flat()
-        //     
 
         res.json(tags);
     } catch (err) {

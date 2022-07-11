@@ -23,8 +23,7 @@ export const Home = () => {
     dispatch(fetchPosts());
     dispatch(fetchTags())
   }, [dispatch]);
-  // console.log(userData._id)
-  console.log(userData)
+
   return (
     <>
       <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
@@ -38,6 +37,7 @@ export const Home = () => {
               <Post key={index} isLoading={true} />
             ) : (
               <Post
+                key={index}
                 id={obj._id}
                 title={obj.title}
                 imageUrl={obj.imageUrl ? `http://localhost:4444${obj.imageUrl}` : ''}

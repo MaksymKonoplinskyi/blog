@@ -16,12 +16,13 @@ export const TagsBlock = ({ items, isLoading = true }) => {
       <List>
         {(isLoading ? [...Array(5)] : items).map((name, i) => (
           <a
-            style={{ key:i, textDecoration: "none", color: "black" }}
+            key={i}
+            style={{ textDecoration: "none", color: "black" }}
             href={`/tags/${name}`}
           >
-            <ListItem key={i} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
+            <ListItem disablePadding>
+              <ListItemButton >
+                <ListItemIcon >
                   <TagIcon />
                 </ListItemIcon>
                 {isLoading ? (
