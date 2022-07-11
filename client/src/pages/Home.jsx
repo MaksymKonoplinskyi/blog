@@ -4,7 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
 
-import axios from '../axios'
+//import axios from '../axios'
 
 import { Post } from '../components/Post';
 import { TagsBlock } from '../components/TagsBlock';
@@ -22,7 +22,7 @@ export const Home = () => {
   React.useEffect(() => {
     dispatch(fetchPosts());
     dispatch(fetchTags())
-  }, []);
+  }, [dispatch]);
   // console.log(userData._id)
   console.log(userData)
   return (
@@ -46,7 +46,7 @@ export const Home = () => {
                 viewsCount={obj.viewsCount}
                 commentsCount={3}
                 tags={obj.tags}
-                isEditable={userData?._id === obj.user._id} //userData?._id === obj.user?._id
+                isEditable={userData?._id === obj.user._id}
               />
             )
           )}
