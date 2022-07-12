@@ -17,7 +17,7 @@ export const fetchRegister = createAsyncThunk('auth/fetchRegister', async (param
 })
 
 const initialState = {
-    userData: null,
+    curentUserData: null,
     status: 'loading',
 }
 
@@ -26,53 +26,53 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         logout: (state) => {
-            state.userData = null
+            state.curentUserData = null
         },
     },
     extraReducers: {
             [fetchAuth.pending]: (state) => {
                 state.status = 'loading';
-                state.userData = null;
+                state.curentUserData = null;
             },
             [fetchAuth.fulfilled]: (state, action) => {
                 state.status = 'loaded';
-                state.userData = action.payload;
+                state.curentUserData = action.payload;
             },
             [fetchAuth.rejected]: (state) => {
                 state.status = 'error';
-                state.userData = null;
+                state.curentUserData = null;
             },
 
             [fetchAuthMe.pending]: (state) => {
                 state.status = 'loading';
-                state.userData = null;
+                state.curentUserData = null;
             },
             [fetchAuthMe.fulfilled]: (state, action) => {
                 state.status = 'loaded';
-                state.userData = action.payload;
+                state.curentUserData = action.payload;
             },
             [fetchAuthMe.rejected]: (state) => {
                 state.status = 'error';
-                state.userData = null;
+                state.curentUserData = null;
             },
 
             [fetchRegister.pending]: (state) => {
                 state.status = 'loading';
-                state.userData = null;
+                state.curentUserData = null;
             },
             [fetchRegister.fulfilled]: (state, action) => {
                 state.status = 'loaded';
-                state.userData = action.payload;
+                state.curentUserData = action.payload;
             },
             [fetchRegister.rejected]: (state) => {
                 state.status = 'error';
-                state.userData = null;
+                state.curentUserData = null;
             },
 
         }
     })
 
-export const selectIsAuth = state => Boolean(state.auth.userData)
+export const selectIsAuth = state => Boolean(state.auth.curentUserData)
 
 export const authReducer = authSlice.reducer
 
