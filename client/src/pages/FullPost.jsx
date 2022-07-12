@@ -14,13 +14,13 @@ export const FullPost = () => {
   const data = useSelector(state => state.post.postData)
   const { post } = useSelector(state => state)
   const isPostsLoading = post.status === 'loading'
-
+  const curentUserId = useSelector(state => state.auth.curentUserData._id)
   const { id } = useParams()
-  console.log(post); 
+  console.log(post);
 
   React.useEffect(() => {
     dispatch(fetchGetFullPost(id));
-  }, [dispatch,id]);
+  }, [dispatch, id]);
 
   if (isPostsLoading) {
     return <Post isLoading={isPostsLoading} isFullPost />
@@ -28,6 +28,8 @@ export const FullPost = () => {
 
   return (
     <>
+
+
       <FullPostInfo
         id={data._id}
         title={data.title}
@@ -36,7 +38,9 @@ export const FullPost = () => {
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
         commentsCount={3}
-        tags={data.tags}    >
+        tags={data.tags}
+        isEditable={curentUserId === data.user._id}
+      >
         <ReactMarkdown children={data.text} />,
 
       </FullPostInfo>

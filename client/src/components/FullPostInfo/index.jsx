@@ -40,7 +40,7 @@ export const FullPostInfo = ({
 
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: true})}>
-      {isEditable && (
+   {isEditable && (
         <div className={styles.editButtons}>
           <Link to={`/posts/${id}/edit`}>
             <IconButton color="primary">

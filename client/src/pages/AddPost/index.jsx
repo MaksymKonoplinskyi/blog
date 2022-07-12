@@ -64,7 +64,7 @@ export const AddPost = () => {
 
       const _id = isEditing ? id : data._id
 
-      navigate(`/posts/${_id}`)
+      navigate(`/fullPost/${_id}`)
 
     } catch (err) {
       console.warn(err)
