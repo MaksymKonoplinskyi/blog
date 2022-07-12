@@ -13,7 +13,7 @@ import { UserInfo } from '../UserInfo';
 import { PostSkeleton } from './Skeleton';
 import { fetchRemovePost } from '../../redux/slices/posts';
 
-export const Post = ({
+export const FullPostInfo = ({
   id,
   title,
   createdAt,
@@ -30,7 +30,7 @@ export const Post = ({
   const dispatch = useDispatch()
   if (isLoading) {
     return <PostSkeleton />;
-  }
+  } 
 
   const onClickRemove = () => {
     if (window.confirm('Вы действитльно хотите удалить статью?')) {

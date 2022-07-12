@@ -29,15 +29,15 @@ export const getAll = async (req, res) => {
             message: 'Не удалось получить статьи',
         });
     }
-};
+}; 
 
 export const getOne = async (req, res) => {
     try {
-        const postId = req.params.id;
-
+        const id = req.params.id;
+// console.log(id);
         PostModel.findOneAndUpdate(
             {
-                _id: postId,
+                _id: id,
             },
             {
                 $inc: { viewsCount: 1 },
@@ -65,7 +65,7 @@ export const getOne = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Не удалось получить статьи',
+            message: 'Не удалось получить статью',
         });
     }
 };

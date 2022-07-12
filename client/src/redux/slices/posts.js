@@ -15,6 +15,7 @@ export const fetchRemovePost = createAsyncThunk('posts/fetchRemovePost', async (
     await axios.delete(`/posts/${id}`)
 )
 
+
 const initialState = {
     posts: {
         items: [],
@@ -32,7 +33,7 @@ const postsSlice = createSlice({
     reducers: {},
     extraReducers: {
 
-        // Получение статьи
+        // Получение статей
         [fetchPosts.pending]: (state) => {
             state.posts.items = [];
             state.posts.status = 'loading';

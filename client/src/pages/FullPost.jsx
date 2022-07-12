@@ -1,35 +1,34 @@
 import React from "react";
 import ReactMarkdown from "react-markdown"
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { Post } from "../components/Post";
 import { Index } from "../components/AddComment";
 import { CommentsBlock } from "../components/CommentsBlock";
-import axios from "../axios";
+import { fetchGetFullPost } from "../redux/slices/post";
+import { FullPostInfo } from "../components/FullPostInfo";
+
 
 export const FullPost = () => {
-  const [data, setData] = React.useState()
-  const [isLoading, setLoading] = React.useState(true)
+  const dispatch = useDispatch()
+  const data = useSelector(state => state.post.postData)
+  const { post } = useSelector(state => state)
+  const isPostsLoading = post.status === 'loading'
+
   const { id } = useParams()
+  console.log(post); 
 
   React.useEffect(() => {
-    axios.get(`/posts/${id}`)
-    .then(res => {
-      setData(res.data)
-      setLoading(false)
-    })
-    .catch(err => {
-      console.warm(err);
-      alert('Ошибка при получении статьи')
-    })
-  }, [])
+    dispatch(fetchGetFullPost(id));
+  }, []);
 
-  if (isLoading) {
-    return <Post isLoading={isLoading} isFullPost />
+  if (isPostsLoading) {
+    return <Post isLoading={isPostsLoading} isFullPost />
   }
 
   return (
     <>
-      <Post
+      <FullPostInfo
         id={data._id}
         title={data.title}
         imageUrl={data.imageUrl ? `http://localhost:4444${data.imageUrl}` : ''}
@@ -38,10 +37,10 @@ export const FullPost = () => {
         viewsCount={data.viewsCount}
         commentsCount={3}
         tags={data.tags}
-        isFullPost      >
+        isFullPost={true}      >
         <ReactMarkdown children={data.text} />,
 
-      </Post>
+      </FullPostInfo>
       <CommentsBlock
         items={[
           {
