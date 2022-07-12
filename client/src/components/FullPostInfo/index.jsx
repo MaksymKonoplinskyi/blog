@@ -23,7 +23,6 @@ export const FullPostInfo = ({
   commentsCount,
   tags,
   children,
-  isFullPost,
   isLoading,
   isEditable,
 }) => {
@@ -40,7 +39,7 @@ export const FullPostInfo = ({
   };
 
   return (
-    <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
+    <div className={clsx(styles.root, { [styles.rootFull]: true})}>
       {isEditable && (
         <div className={styles.editButtons}>
           <Link to={`/posts/${id}/edit`}>
@@ -55,7 +54,7 @@ export const FullPostInfo = ({
       )}
       {imageUrl && (
         <img
-          className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
+          className={clsx(styles.image, { [styles.imageFull]: true })}
           src={imageUrl}
           alt={title}
         />
@@ -63,8 +62,8 @@ export const FullPostInfo = ({
       <div className={styles.wrapper}>
         <UserInfo {...user} additionalText={createdAt} />
         <div className={styles.indention}>
-          <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
-            {isFullPost ? title : <Link to={`/fullPost/${id}`}>{title}</Link>}
+          <h2 className={clsx(styles.title, { [styles.titleFull]: true })}>
+            { title }
           </h2>
           <ul className={styles.tags}>
             {tags.map((name) => (

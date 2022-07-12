@@ -20,7 +20,7 @@ export const FullPost = () => {
 
   React.useEffect(() => {
     dispatch(fetchGetFullPost(id));
-  }, []);
+  }, [dispatch,id]);
 
   if (isPostsLoading) {
     return <Post isLoading={isPostsLoading} isFullPost />
@@ -36,8 +36,7 @@ export const FullPost = () => {
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
         commentsCount={3}
-        tags={data.tags}
-        isFullPost={true}      >
+        tags={data.tags}    >
         <ReactMarkdown children={data.text} />,
 
       </FullPostInfo>
