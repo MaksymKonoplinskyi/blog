@@ -9,14 +9,15 @@ import { fetchGetFullPost } from "../redux/slices/post";
 import { FullPostInfo } from "../components/FullPostInfo";
 
 
+
 export const FullPost = () => {
   const dispatch = useDispatch()
   const data = useSelector(state => state.post.postData)
   const { post } = useSelector(state => state)
   const isPostsLoading = post.status === 'loading'
-  const curentUserId = useSelector(state => state.auth.curentUserData._id)
+  const curentUserData = useSelector(state => state.auth.curentUserData)
   const { id } = useParams()
-  console.log(post);
+
 
   React.useEffect(() => {
     dispatch(fetchGetFullPost(id));
@@ -25,11 +26,11 @@ export const FullPost = () => {
   if (isPostsLoading) {
     return <Post isLoading={isPostsLoading} isFullPost />
   }
+  // console.log(data.text);
+  //const [text, setText] = React.useState('');
 
   return (
     <>
-
-
       <FullPostInfo
         id={data._id}
         title={data.title}
@@ -39,10 +40,9 @@ export const FullPost = () => {
         viewsCount={data.viewsCount}
         commentsCount={3}
         tags={data.tags}
-        isEditable={curentUserId === data.user._id}
+        isEditable={curentUserData?._id === data.user._id}
       >
-        <ReactMarkdown children={data.text} />,
-
+        <ReactMarkdown children={data.text} />
       </FullPostInfo>
       <CommentsBlock
         items={[

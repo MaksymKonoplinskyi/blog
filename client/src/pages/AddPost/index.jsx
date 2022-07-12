@@ -12,6 +12,9 @@ import { useNavigate, Navigate, useParams } from 'react-router-dom';
 import axios from '../../axios'
 
 
+import * as EasyMDE from 'easymde';
+import 'easymde/dist/easymde.min.css';
+
 export const AddPost = () => {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -84,19 +87,25 @@ export const AddPost = () => {
         alert('Ошибка при изменении статьи')
       })
     }
-  }, [])
+  }, [id])
 
   const options = React.useMemo(
     () => ({
-      spellChecker: false,
-      maxHeight: '400px',
-      autofocus: true,
-      placeholder: 'Введите текст...',
-      status: false,
+      //spellChecker: false,
+      maxHeight: '200px',
+      //autofocus: true,
+      //placeholder: 'Введите текст...',
+      //status: true,
       autosave: {
         enabled: true,
         delay: 1000,
+        uniqueId: 'postText',
       },
+      //autoRefresh:{ delay: 300 },
+      //previewImagesInEditor: true,
+      //previewRender: (text) => {'text'},
+      //imageMaxSize:1024*1024*2,
+      //sideBySideFullscreen:false,
     }),
     [],
   );
@@ -138,7 +147,7 @@ export const AddPost = () => {
         variant="standard"
         placeholder="Тэги"
         fullWidth />
-      <SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options} />
+      <SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options}/>
       <div className={styles.buttons}>
         <Button onClick={onSubmit} size="large" variant="contained">
           {isEditing ? 'Сохранить' : 'Опубликовать'}
