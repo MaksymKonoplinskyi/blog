@@ -14,7 +14,7 @@ import { Navigate } from 'react-router-dom';
 export const Registration = (values) => {
   const isAuth = useSelector(selectIsAuth)
   const dispatch = useDispatch()
-  const { register, handleSubmit, setError, formState: { errors, isValid }
+  const { register, handleSubmit, formState: { errors, isValid }
   } = useForm({
     defaultValues: {
       fullName: 'MaksK',
@@ -36,7 +36,7 @@ export const Registration = (values) => {
   }
 
   if (isAuth) {
-    return <Navigate to='/'/>
+    return <Navigate to='/' />
   }
 
   return (

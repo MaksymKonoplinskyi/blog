@@ -12,14 +12,13 @@ import { useNavigate, Navigate, useParams } from 'react-router-dom';
 import axios from '../../axios'
 
 
-import * as EasyMDE from 'easymde';
 import 'easymde/dist/easymde.min.css';
 
 export const AddPost = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const isAuth = useSelector(selectIsAuth)
-  const [isLoading, setLoading] = React.useState(false);
+  //const [isLoading, setLoading] = React.useState(false);
   const [text, setText] = React.useState('');
   const [title, setTitle] = React.useState('');
   const [tags, setTags] = React.useState('');
@@ -52,7 +51,7 @@ export const AddPost = () => {
 
   const onSubmit = async () => {
     try {
-      setLoading(true)
+      //setLoading(true)
 
       const fields = {
         title,
@@ -91,10 +90,10 @@ export const AddPost = () => {
 
   const options = React.useMemo(
     () => ({
-      //spellChecker: false,
+      spellChecker: false,
       maxHeight: '200px',
-      //autofocus: true,
-      //placeholder: 'Введите текст...',
+      autofocus: true,
+      placeholder: 'Введите текст...',
       //status: true,
       autosave: {
         enabled: true,
@@ -106,6 +105,11 @@ export const AddPost = () => {
       //previewRender: (text) => {'text'},
       //imageMaxSize:1024*1024*2,
       //sideBySideFullscreen:false,
+      // forceSync: true,
+      //      renderingConfig: {
+      //   codeSyntaxHighlighting: true,
+      // },
+
     }),
     [],
   );
@@ -147,7 +151,7 @@ export const AddPost = () => {
         variant="standard"
         placeholder="Тэги"
         fullWidth />
-      <SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options}/>
+      <SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options} />
       <div className={styles.buttons}>
         <Button onClick={onSubmit} size="large" variant="contained">
           {isEditing ? 'Сохранить' : 'Опубликовать'}
@@ -157,5 +161,6 @@ export const AddPost = () => {
         </a>
       </div>
     </Paper>
+
   );
 };
