@@ -1,0 +1,20 @@
+grid  div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+     width: 50px;
+     height: 50px;
+     background: #fdc57b;
+     position: absolute;
+     border-radius: ;
+     transform:rotateX();
+     display: flex;
+     justify-content:space-around;
+     transform: translateX();
+
+     display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  position: relative;
+   }
