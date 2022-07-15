@@ -12,15 +12,16 @@ import { FullPostInfo } from "../components/FullPostInfo";
 
 export const FullPost = () => {
   const dispatch = useDispatch()
-  const data = useSelector(state => state.post.postData)
-  const { post } = useSelector(state => state)
-  const isPostsLoading = post.status === 'loading'
+  const data = useSelector(state => state.post.curentPostData)
+  const curentPostStatus = useSelector(state => state.post.status)
+  const isPostsLoading = curentPostStatus === 'loading'
   const curentUserData = useSelector(state => state.auth.curentUserData)
   const { id } = useParams()
 
 
   React.useEffect(() => {
     dispatch(fetchGetFullPost(id));
+    //return () => dispatch(postout());
   }, [dispatch, id]);
 
   if (isPostsLoading) {
