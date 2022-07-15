@@ -6,19 +6,21 @@ import SimpleMDE from 'react-simplemde-editor';
 
 import 'easymde/dist/easymde.min.css';
 import styles from './AddPost.module.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectIsAuth } from "../../redux/slices/auth";
 import { useNavigate, Navigate, useParams } from 'react-router-dom';
 import axios from '../../axios'
 
 
 import 'easymde/dist/easymde.min.css';
+import { fetchCriateNewPost, fetchEditPost } from '../../redux/slices/post';
 
 export const AddPost = () => {
+  const dispatch = useDispatch()
   const { id } = useParams()
   const navigate = useNavigate()
   const isAuth = useSelector(selectIsAuth)
-  //const [isLoading, setLoading] = React.useState(false);
+    //const [isLoading, setLoading] = React.useState(false);
   const [text, setText] = React.useState('');
   const [title, setTitle] = React.useState('');
   const [tags, setTags] = React.useState('');
@@ -44,10 +46,25 @@ export const AddPost = () => {
   };
 
 
+  // const onSubmit = async (values) => {
+  //   const data = await dispatch(fetchAuth(values))
+
+  //   if (!data.payload) {
+  //     return alert('Не удалось авторизироваться')
+  //   }
+
+  //   if ('token' in data.payload) {
+  //     window.localStorage.setItem('token', data.payload.token)
+  //   }
+  // }
+
 
   const onChange = React.useCallback((text) => {
     setText(text);
   }, []);
+
+
+
 
   const onSubmit = async () => {
     try {
@@ -59,12 +76,18 @@ export const AddPost = () => {
         imageUrl,
         tags,
       }
+      const patchData = { id, fields }
+      // const { data2 } = await dispatch(fetchCriateNewPost(fields));
 
-      const { data } = isEditing
-        ? await axios.patch(`/posts/${id}`, fields)
-        : await axios.post('/posts', fields)
+      // const { data } = await dispatch(fetchEditPost(patchData));
+      // console.log(data);
 
-      const _id = isEditing ? id : data._id
+
+      const data = isEditing
+        ? await dispatch(fetchEditPost(patchData))
+        : await dispatch(fetchCriateNewPost(fields))
+      console.log(data.payload._id);
+      const _id = isEditing ? id : data.payload._id
 
       navigate(`/fullPost/${_id}`)
 

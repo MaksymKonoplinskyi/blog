@@ -4,10 +4,10 @@ import PostModel from '../models/Post.js';
 export const getLastTags = async (req, res) => {
     try {
         const posts = await PostModel.find().exec();
-        const uniqTags = new Set (posts
+        const uniqTags = new Set(posts
             .map((obj) => obj.tags)
             .flat())
-            
+
         const tags = [...uniqTags].slice(0, 5);
 
         res.json(tags);
@@ -18,7 +18,7 @@ export const getLastTags = async (req, res) => {
         });
     }
 };
- 
+
 export const getAll = async (req, res) => {
     try {
         const posts = await PostModel.find().populate('user').exec();
@@ -29,12 +29,12 @@ export const getAll = async (req, res) => {
             message: 'Не удалось получить статьи',
         });
     }
-}; 
+};
 
 export const getOne = async (req, res) => {
     try {
         const id = req.params.id;
-// console.log(id);
+        // console.log(id);
         PostModel.findOneAndUpdate(
             {
                 _id: id,
@@ -144,7 +144,11 @@ export const update = async (req, res) => {
         );
 
         res.json({
-            success: true,
+            title: req.body.title,
+            text: req.body.text,
+            imageUrl: req.body.imageUrl,
+            user: req.userId,
+            tags: req.body.tags.split(','),
         });
     } catch (err) {
         console.log(err);
