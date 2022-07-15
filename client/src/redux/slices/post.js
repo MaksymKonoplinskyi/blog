@@ -9,7 +9,7 @@ export const fetchGetFullPost = createAsyncThunk('post/fetchGetFullPost', async 
 })
 
 const initialState = {
-    postData: null,
+    curentPostData: null,
     status: 'loading',
 
 }
@@ -17,24 +17,30 @@ const initialState = {
 const postSlice = createSlice({
     name: 'post',
     initialState,
-    reducers: {},
+    reducers: {
+        // postout: (state) => {
+        //     state.curentPostData = null
+        // },
+    },
     extraReducers: {
 
         // Получение одной статьи
         [fetchGetFullPost.pending]: (state) => {
             state.status = 'loading';
-            state.postData = null;
+            state.curentPostData = null;
         },
         [fetchGetFullPost.fulfilled]: (state, action) => {
             state.status = 'loaded';
-            state.postData = action.payload;
+            state.curentPostData = action.payload;
         },
         [fetchGetFullPost.rejected]: (state) => {
             state.status = 'error';
-            state.postData = null;
+            state.curentPostData = null;
         },
 
     }
 })
+
+// export const { postout } = postSlice.actions
 
 export const postReducer = postSlice.reducer;
