@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+// import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
 
 import { Post } from '../components/Post';
@@ -11,6 +11,7 @@ import { fetchPostsNew, fetchPostsPopular, fetchTags } from '../redux/slices/pos
 import { Link, useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
 
+
 export const Home = () => {
   const dispatch = useDispatch()
   const curentUserData = useSelector(state => state.auth.curentUserData)
@@ -18,8 +19,10 @@ export const Home = () => {
 
   const isPostsLoading = posts.status === 'loading'
   const isTagsLoading = tags.status === 'loading'
-  const { sort } = useParams()
-
+  let { sort } = useParams()
+  if (!sort) {
+    sort = 'new'
+  }
 
   React.useEffect(() => {
     switch (sort) {
@@ -39,31 +42,33 @@ export const Home = () => {
     dispatch(fetchTags())
   }, [dispatch, sort]);
 
+  // console.log(sort);
+
   return (
     <>
-
-      <>
-        <Link style={{ textDecoration: 'none' }} to="/new">
-          <Button variant="outlined" color="success">
+      {/* <Tabs indicator="false" style={{ marginBottom: 15 }} value={sort} aria-label="basic tabs example">
+        <Link style={{ textDecoration: 'none' }} to="/new" value={'new'}>
+          <p style={{ margin: 15 }}>
             Новые
-          </Button>
+          </p>
         </Link>
-        <Link style={{ textDecoration: 'none' }} to="/popular">
-          <Button  >
+        <Link style={{ textDecoration: 'none' }} to="/popular" value={'popular'}>
+          <p style={{ margin: 15 }}>
             Популярные
-          </Button>
+          </p>
         </Link>
-      </>
-      {/* <Tabs style={{ marginBottom: 15 }} value={sort} aria-label="basic tabs example">
-        <Link style={{ textDecoration: 'none' }} to="/new">
-          <Tab label="Новые" value="new" />
-        </Link>
-        <Link  to="/popular">
-          <Tab label="Популярные" value="popular" />
-        </Link>
-        <Tab label="Новые" value="new" />
-        <Tab label="Популярные" value="popular"/>
       </Tabs> */}
+      <Link to="/new" >
+        <Button style={{ margin: 15 }}>
+          Новые
+        </Button>
+      </Link>
+      <Link to="/popular" >
+        <Button style={{ margin: 15 }}>
+          Популярные
+        </Button>
+      </Link>
+
       <Grid container spacing={4}>
         <Grid xs={8} item>
           {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) =>
