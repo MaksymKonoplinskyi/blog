@@ -7,7 +7,9 @@ import Grid from '@mui/material/Grid';
 import { Post } from '../components/Post';
 import { TagsBlock } from '../components/TagsBlock';
 import { CommentsBlock } from '../components/CommentsBlock';
-import { fetchPosts, fetchTags } from '../redux/slices/posts';
+import { fetchPostsNew, fetchPostsPopular, fetchTags } from '../redux/slices/posts';
+import { Link, useParams } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -16,18 +18,52 @@ export const Home = () => {
 
   const isPostsLoading = posts.status === 'loading'
   const isTagsLoading = tags.status === 'loading'
+  const { sort } = useParams()
+
 
   React.useEffect(() => {
-    dispatch(fetchPosts());
+    switch (sort) {
+      case 'new':
+        dispatch(fetchPostsNew());
+        break;
+
+      case 'popular':
+        dispatch(fetchPostsPopular());
+        break;
+
+      default:
+        dispatch(fetchPostsNew());
+        break;
+    }
+
     dispatch(fetchTags())
-  }, [dispatch]);
+  }, [dispatch, sort]);
 
   return (
     <>
-      <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
-        <Tab label="Новые" />
-        <Tab label="Популярные" />
-      </Tabs>
+
+      <>
+        <Link style={{ textDecoration: 'none' }} to="/new">
+          <Button variant="outlined" color="success">
+            Новые
+          </Button>
+        </Link>
+        <Link style={{ textDecoration: 'none' }} to="/popular">
+          <Button  >
+            Популярные
+          </Button>
+        </Link>
+      </>
+      {/* <Tabs style={{ marginBottom: 15 }} value={sort} aria-label="basic tabs example">
+        <Link style={{ textDecoration: 'none' }} to="/new">
+          <Tab label="Новые" value="new" />
+        </Link>
+        <Link  to="/popular">
+          <Tab label="Популярные" value="popular" />
+        </Link>
+        <Tab label="Новые" value="new" />
+        <Tab label="Популярные" value="popular"/>
+      </Tabs> */}
       <Grid container spacing={4}>
         <Grid xs={8} item>
           {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) =>
