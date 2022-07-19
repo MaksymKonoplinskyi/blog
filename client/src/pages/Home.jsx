@@ -18,7 +18,7 @@ export const Home = () => {
   const curentUserData = useSelector(state => state.auth.curentUserData)
   const { posts, tags } = useSelector(state => state.posts)
 
-  const isPostsLoading = posts.status === 'loading'
+  const isPostsLoading = true//posts.status === 'loading'
   const isTagsLoading = tags.status === 'loading'
   const { curentSort } = useParams()
   // const sort = curentSort ? curentSort : 'new'
@@ -46,18 +46,6 @@ export const Home = () => {
 
   return (
     <>
-      {/* <Tabs indicator="false" style={{ marginBottom: 15 }} value={sort} aria-label="basic tabs example">
-        <Link style={{ textDecoration: 'none' }} to="/new" value={'new'}>
-          <p style={{ margin: 15 }}>
-            Новые
-          </p>
-        </Link>
-        <Link style={{ textDecoration: 'none' }} to="/popular" value={'popular'}>
-          <p style={{ margin: 15 }}>
-            Популярные
-          </p>
-        </Link>
-      </Tabs> */}
       <Link to="/new" >
         <Button style={{ margin: 15 }}>
           Новые
@@ -71,24 +59,11 @@ export const Home = () => {
 
       <Grid container spacing={4}>
         <Grid xs={8} item>
-        <Posts
-        isPostsLoading={isPostsLoading}
-        items={posts.items}
-        curentUserId={curentUserData?._id}
-        />
-          {/* {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) =>
-            isPostsLoading ? (
-              <Post key={index} isLoading={isPostsLoading} />
-            ) : (
-              <Post
-                key={index}
-                postItem={obj}
-                commentsCount={3}
-                isLoading={isPostsLoading}
-                isEditable={curentUserData?._id === obj.user._id}
-              />
-            )
-          )} */}
+          <Posts
+            isPostsLoading={isPostsLoading}
+            items={posts.items}
+            curentUserId={curentUserData?._id}
+          />
         </Grid>
         <Grid xs={4} item>
           <TagsBlock items={tags.items} isLoading={isTagsLoading} />

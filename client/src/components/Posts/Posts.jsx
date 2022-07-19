@@ -1,5 +1,7 @@
 import React from 'react';
 import { Post } from '../Post';
+import {PostsBlockSkeleton} from '../Posts/PostsBlockSkeleton';
+
 
 
 
@@ -8,10 +10,16 @@ export const Posts = ({
     items,
     curentUserId,
 }) => {
+    if (isPostsLoading) {
+        return (
+        <>
+        <PostsBlockSkeleton />
+                </>
+        );
+    }
 
-    
     return (
-        <>{(isPostsLoading ? [...Array(5)] : items).map((obj, index) =>
+        <>{(isPostsLoading ? [...Array(3)] : items).map((obj, index) =>
             isPostsLoading ? (
                 <Post key={index} isLoading={isPostsLoading} />
             ) : (
@@ -28,3 +36,4 @@ export const Posts = ({
 
     )
 }
+
