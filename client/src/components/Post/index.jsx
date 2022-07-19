@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
@@ -18,12 +18,10 @@ export const Post = ({
 }) => {
   const dispatch = useDispatch()
 
-
   const onClickRemove = () => {
     if (window.confirm('Вы действитльно хотите удалить статью?')) {
       dispatch(fetchRemovePost(postItem.id))
     }
-    
   };
 
   return (
@@ -60,7 +58,7 @@ export const Post = ({
               </li>
             ))}
           </ul>
-          
+
           <ul className={styles.postDetails}>
             <li>
               <EyeIcon />

@@ -14,7 +14,8 @@ export const PostsBlock = ({
         <>{(
             isPostsLoading ? <PostsBlockSkeleton /> : (<Posts
                 items={items}
-                curentUserId={curentUserId} />)
+                curentUserId={curentUserId} />
+                )
         )}
         </>
 
