@@ -8,9 +8,21 @@ import TagIcon from "@mui/icons-material/Tag";
 import ListItemText from "@mui/material/ListItemText";
 import Skeleton from "@mui/material/Skeleton";
 
-import { SideBlock } from "./SideBlock";
+import { SideBlock } from "../SideBlock";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTags } from "../../redux/slices/allTags";
 
-export const TagsBlock = ({ items, isLoading = true }) => {
+
+export const TagsBlock = () => {
+  const dispatch = useDispatch()
+  const tags  = useSelector(state => state.tags)
+  const items = tags.items
+  const isLoading = tags.status === 'loading'
+  React.useEffect(() => {
+    dispatch(fetchTags())
+  }, [dispatch]);
+
+
   return (
     <SideBlock title="Тэги">
       <List>

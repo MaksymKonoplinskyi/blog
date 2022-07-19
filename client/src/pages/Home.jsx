@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Grid';
-import { TagsBlock } from '../components/TagsBlock';
+import { TagsBlock } from '../components/TagsBlock/TagsBlock';
 import { CommentsBlock } from '../components/CommentsBlock';
-import { fetchPostsNew, fetchPostsPopular, fetchTags } from '../redux/slices/posts';
+import { fetchPostsNew, fetchPostsPopular } from '../redux/slices/posts';
 import { Link, useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { PostsBlock } from '../components/PostsBlock/PostsBlock';
@@ -12,12 +12,12 @@ import { PostsBlock } from '../components/PostsBlock/PostsBlock';
 export const Home = () => {
   const dispatch = useDispatch()
   const curentUserData = useSelector(state => state.auth.curentUserData)
-  const { posts, tags } = useSelector(state => state.posts)
+  const posts = useSelector(state => state.posts)
 
   const isPostsLoading = posts.status === 'loading'
-  const isTagsLoading = tags.status === 'loading'
+  // const isTagsLoading = tags.status === 'loading'
   const { curentSort } = useParams()
-  // const sort = curentSort ? curentSort : 'new'
+  //  const sort = curentSort ? curentSort : 'new'
 
 
   React.useEffect(() => {
@@ -35,7 +35,7 @@ export const Home = () => {
         break;
     }
 
-    dispatch(fetchTags())
+    // dispatch(fetchTags())
   }, [dispatch, curentSort]);
 
   // console.log(sort);
@@ -62,7 +62,7 @@ export const Home = () => {
           />
         </Grid>
         <Grid xs={4} item>
-          <TagsBlock items={tags.items} isLoading={isTagsLoading} />
+          <TagsBlock />
           <CommentsBlock
             items={[
               {
