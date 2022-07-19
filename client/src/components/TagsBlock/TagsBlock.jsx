@@ -11,6 +11,7 @@ import Skeleton from "@mui/material/Skeleton";
 import { SideBlock } from "../SideBlock";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTags } from "../../redux/slices/allTags";
+import { Link } from "react-router-dom";
 
 
 export const TagsBlock = () => {
@@ -44,7 +45,13 @@ export const TagsBlock = () => {
                 )}
               </ListItemButton>
             </ListItem>
+            {/* <Link
+             key={i}
+             style={{ textDecoration: "none", color: "black" }}
+             to={`/tags/${name}`}
+            ></Link> */}
           </a>
+          
         ))}
       </List>
     </SideBlock>
