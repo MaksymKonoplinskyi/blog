@@ -14,16 +14,8 @@ import { fetchRemovePost } from '../../redux/slices/posts';
 import { PostCreationInfo } from '../PostCreationInfo';
 
 export const Post = ({
-  id,
-  title,
-  createdAt,
-  imageUrl,
-  user,
-  viewsCount,
-  commentsCount,
-  tags,
+  postItem,
   children,
-  isFullPost,
   isLoading,
   isEditable,
 }) => {
@@ -34,16 +26,16 @@ export const Post = ({
 
   const onClickRemove = () => {
     if (window.confirm('Вы действитльно хотите удалить статью?')) {
-      dispatch(fetchRemovePost(id))
+      dispatch(fetchRemovePost(postItem.id))
     }
     
   };
 
   return (
-    <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
+    <div className={clsx(styles.root)}>
       {isEditable && (
         <div className={styles.editButtons}>
-          <Link to={`/posts/${id}/edit`}>
+          <Link to={`/posts/${postItem.id}/edit`}>
             <IconButton color="primary">
               <EditIcon />
             </IconButton>
@@ -53,21 +45,21 @@ export const Post = ({
           </IconButton>
         </div>
       )}
-      {imageUrl && (
+      {postItem.imageUrl && (
         <img
-          className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
-          src={imageUrl}
-          alt={title}
+          className={clsx(styles.image)}
+          src={`http://localhost:4444${postItem.imageUrl}`}
+          alt={postItem.title}
         />
       )}
       <div className={styles.wrapper}>
-        <PostCreationInfo {...user} createdAt={createdAt} />
+        <PostCreationInfo {...postItem.user} createdAt={postItem.createdAt} />
         <div className={styles.indention}>
-          <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
-            {isFullPost ? title : <Link to={`/fullPost/${id}`}>{title}</Link>}
+          <h2 className={clsx(styles.title)}>
+            <Link to={`/fullPost/${postItem.id}`}>{postItem.title}</Link>
           </h2>
           <ul className={styles.tags}>
-            {tags.map((name) => (
+            {postItem.tags.map((name) => (
               <li key={name}>
                 <Link to={`/tag/${name}`}>#{name}</Link>
               </li>
@@ -77,11 +69,11 @@ export const Post = ({
           <ul className={styles.postDetails}>
             <li>
               <EyeIcon />
-              <span>{viewsCount}</span>
+              <span>{postItem.viewsCount}</span>
             </li>
             <li>
               <CommentIcon />
-              <span>{commentsCount}</span>
+              <span>{postItem.commentsCount}</span>
             </li>
           </ul>
         </div>

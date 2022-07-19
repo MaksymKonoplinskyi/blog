@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 // import Tabs from '@mui/material/Tabs';
 // import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
-
-import { Post } from '../components/Post';
+// import { Posts} from '../components/Posts/Posts'
+// import { Post } from '../components/Post';
 import { TagsBlock } from '../components/TagsBlock';
 import { CommentsBlock } from '../components/CommentsBlock';
 import { fetchPostsNew, fetchPostsPopular, fetchTags } from '../redux/slices/posts';
 import { Link, useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
+import { Posts } from '../components/Posts/Posts';
 
 
 export const Home = () => {
@@ -70,24 +71,24 @@ export const Home = () => {
 
       <Grid container spacing={4}>
         <Grid xs={8} item>
-          {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) =>
+        <Posts
+        isPostsLoading={isPostsLoading}
+        items={posts.items}
+        curentUserId={curentUserData?._id}
+        />
+          {/* {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) =>
             isPostsLoading ? (
-              <Post key={index} isLoading={true} />
+              <Post key={index} isLoading={isPostsLoading} />
             ) : (
               <Post
                 key={index}
-                id={obj._id}
-                title={obj.title}
-                imageUrl={obj.imageUrl ? `http://localhost:4444${obj.imageUrl}` : ''}
-                user={obj.user}
-                createdAt={obj.createdAt}
-                viewsCount={obj.viewsCount}
+                postItem={obj}
                 commentsCount={3}
-                tags={obj.tags}
+                isLoading={isPostsLoading}
                 isEditable={curentUserData?._id === obj.user._id}
               />
             )
-          )}
+          )} */}
         </Grid>
         <Grid xs={4} item>
           <TagsBlock items={tags.items} isLoading={isTagsLoading} />
