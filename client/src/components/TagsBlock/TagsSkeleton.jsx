@@ -9,14 +9,12 @@ export const TagsSkeleton = () => {
         <>
             <List>
                 {[...Array(5)].map((name, i) => (
-                    <ListItem disablePadding>
+                    <ListItem disablePadding key={i} >
                         <ListItemButton >
                             <ListItemIcon >
                                 <TagIcon />
                             </ListItemIcon>
-                            {(
-                            <Skeleton width={100} />
-                            )}
+                            <Skeleton width={100} height={30} />
                         </ListItemButton>
                     </ListItem>
                 ))}
