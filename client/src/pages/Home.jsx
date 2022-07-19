@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Tabs from '@mui/material/Tabs';
+// import Tabs from '@mui/material/Tabs';
 // import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
 
@@ -19,13 +19,12 @@ export const Home = () => {
 
   const isPostsLoading = posts.status === 'loading'
   const isTagsLoading = tags.status === 'loading'
-  let { sort } = useParams()
-  if (!sort) {
-    sort = 'new'
-  }
+  const { curentSort } = useParams()
+  // const sort = curentSort ? curentSort : 'new'
+
 
   React.useEffect(() => {
-    switch (sort) {
+    switch (curentSort) {
       case 'new':
         dispatch(fetchPostsNew());
         break;
@@ -40,7 +39,7 @@ export const Home = () => {
     }
 
     dispatch(fetchTags())
-  }, [dispatch, sort]);
+  }, [dispatch, curentSort]);
 
   // console.log(sort);
 
