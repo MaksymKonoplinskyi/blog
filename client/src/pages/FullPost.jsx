@@ -1,27 +1,27 @@
 import React from "react";
 import ReactMarkdown from "react-markdown"
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom";
 import { Index } from "../components/AddComment";
 import { CommentsBlock } from "../components/CommentsBlock";
 import { fetchGetFullPost } from "../redux/slices/post";
 import { FullPostInfo } from "../components/FullPostInfo";
 
-
-
 export const FullPost = () => {
   const dispatch = useDispatch()
+  const { id } = useParams();
   const data = useSelector(state => state.post.curentPostData)
   //const curentPostStatus = useSelector(state => state.post.status)
   //const isPostsLoading = curentPostStatus === 'loading'
   const curentUserData = useSelector(state => state.auth.curentUserData)
-  const { id } = useParams()
-console.log(dispatch(fetchGetFullPost(id)));
 
+  // console.log(dispatch(fetchGetFullPost(id)));
   React.useEffect(() => {
-    dispatch(fetchGetFullPost(id));
-  }, [dispatch, id]);
-
+    dispatch(fetchGetFullPost(id))
+  }, [dispatch, id])
+  // React.useEffect(() => {
+  //   dispatch(fetchTags())
+  // }, [dispatch])
   // if (isPostsLoading) {
   //   return <Post isLoading={isPostsLoading} isFullPost />
   // }
