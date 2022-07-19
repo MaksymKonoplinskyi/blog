@@ -9,20 +9,15 @@ import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 
 import styles from './Post.module.scss';
-import { PostSkeleton } from './Skeleton';
 import { fetchRemovePost } from '../../redux/slices/posts';
 import { PostCreationInfo } from '../PostCreationInfo';
 
 export const Post = ({
   postItem,
-  children,
-  isLoading,
   isEditable,
 }) => {
   const dispatch = useDispatch()
-  if (isLoading) {
-    return <PostSkeleton />;
-  }
+
 
   const onClickRemove = () => {
     if (window.confirm('Вы действитльно хотите удалить статью?')) {
@@ -35,7 +30,7 @@ export const Post = ({
     <div className={clsx(styles.root)}>
       {isEditable && (
         <div className={styles.editButtons}>
-          <Link to={`/posts/${postItem.id}/edit`}>
+          <Link to={`/posts/${postItem._id}/edit`}>
             <IconButton color="primary">
               <EditIcon />
             </IconButton>
@@ -56,7 +51,7 @@ export const Post = ({
         <PostCreationInfo {...postItem.user} createdAt={postItem.createdAt} />
         <div className={styles.indention}>
           <h2 className={clsx(styles.title)}>
-            <Link to={`/fullPost/${postItem.id}`}>{postItem.title}</Link>
+            <Link to={`/fullPost/${postItem._id}`}>{postItem.title}</Link>
           </h2>
           <ul className={styles.tags}>
             {postItem.tags.map((name) => (
@@ -65,7 +60,7 @@ export const Post = ({
               </li>
             ))}
           </ul>
-          {children && <div className={styles.content}>{children}</div>}
+          
           <ul className={styles.postDetails}>
             <li>
               <EyeIcon />
