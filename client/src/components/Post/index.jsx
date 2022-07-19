@@ -1,16 +1,15 @@
-import React from 'react';
-import clsx from 'clsx';
-import { useDispatch } from 'react-redux';
+import React from 'react'
+import clsx from 'clsx'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Clear';
-import EditIcon from '@mui/icons-material/Edit';
-import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-
-import styles from './Post.module.scss';
-import { fetchRemovePost } from '../../redux/slices/posts';
-import { PostCreationInfo } from '../PostCreationInfo';
+import IconButton from '@mui/material/IconButton'
+import DeleteIcon from '@mui/icons-material/Clear'
+import EditIcon from '@mui/icons-material/Edit'
+import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined'
+import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined'
+import styles from './Post.module.scss'
+import { fetchRemovePost } from '../../redux/slices/posts'
+import { PostCreationInfo } from '../PostCreationInfo'
 
 export const Post = ({
   postItem,
@@ -41,7 +40,7 @@ export const Post = ({
       {postItem.imageUrl && (
         <img
           className={clsx(styles.image)}
-          src={`http://localhost:4444${postItem.imageUrl}`}
+          src={`http://localhost:4444${postItem?.imageUrl}`}
           alt={postItem.title}
         />
       )}

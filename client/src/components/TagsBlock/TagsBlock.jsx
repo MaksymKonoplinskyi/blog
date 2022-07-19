@@ -1,9 +1,9 @@
-import React from "react";
-import { SideBlock } from "../SideBlock";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTags } from "../../redux/slices/allTags";
-import { TagsSkeleton } from "./TagsSkeleton";
-import { Tags } from "./Tags";
+import React from "react"
+import { SideBlock } from "../SideBlock"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchTags } from "../../redux/slices/allTags"
+import { TagsSkeleton } from "./TagsSkeleton"
+import { Tags } from "./Tags"
 
 
 export const TagsBlock = () => {
@@ -13,17 +13,15 @@ export const TagsBlock = () => {
   const isLoading = tags.status === 'loading'
   React.useEffect(() => {
     dispatch(fetchTags())
-  }, [dispatch]);
-  
+  }, [dispatch])
+
 
   return (
     <SideBlock title="Тэги">
       {isLoading ? (
         <TagsSkeleton />
       ) : (
-        <Tags
-          tagsItems={tagsItems}
-        />
+        <Tags tagsItems={tagsItems} />
       )}
     </SideBlock>
   );

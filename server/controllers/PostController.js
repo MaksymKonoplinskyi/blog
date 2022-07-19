@@ -33,7 +33,7 @@ export const getAll = async (req, res) => {
 
 export const getAllNew = async (req, res) => {
     try {
-        const posts = await PostModel.find().sort({ createdAt: -1 });
+        const posts = await PostModel.find().sort({ createdAt: -1 }).populate('user').exec();
         res.json(posts);
     } catch (err) {
         console.log(err);
@@ -45,7 +45,7 @@ export const getAllNew = async (req, res) => {
 
 export const getAllPopular = async (req, res) => {
     try {
-        const posts = await PostModel.find().sort({ viewsCount: -1 });
+        const posts = await PostModel.find().sort({ viewsCount: -1 }).populate('user').exec();
         res.json(posts);
     } catch (err) {
         console.log(err);

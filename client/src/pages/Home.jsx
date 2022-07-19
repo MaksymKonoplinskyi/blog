@@ -42,12 +42,12 @@ export const Home = () => {
 
   return (
     <>
-      <Link to="/new" >
+      <Link style={{ textDecoration: "none" }} to="/new" >
         <Button style={{ margin: 15 }}>
           Новые
         </Button>
-      </Link>
-      <Link to="/popular" >
+      </Link >
+      <Link style={{ textDecoration: "none" }} to="/popular" >
         <Button style={{ margin: 15 }}>
           Популярные
         </Button>
