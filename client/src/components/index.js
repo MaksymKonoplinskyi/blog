@@ -1,4 +1,6 @@
 export * from "./TagsBlock/TagsBlock";
+export * from "./TagsBlock/Tags";
+export * from "./TagsBlock/TagsSkeleton";
 export * from "./CommentsBlock";
 export * from "./Post";
 export * from "./PostsBlock/Posts";
