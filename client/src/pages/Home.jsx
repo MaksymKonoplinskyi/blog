@@ -1,16 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import Tabs from '@mui/material/Tabs';
-// import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
-// import { Posts} from '../components/Posts/Posts'
-// import { Post } from '../components/Post';
 import { TagsBlock } from '../components/TagsBlock';
 import { CommentsBlock } from '../components/CommentsBlock';
 import { fetchPostsNew, fetchPostsPopular, fetchTags } from '../redux/slices/posts';
 import { Link, useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { Posts } from '../components/Posts/Posts';
+import { PostsBlock } from '../components/PostsBlock/PostsBlock';
 
 
 export const Home = () => {
@@ -18,7 +14,7 @@ export const Home = () => {
   const curentUserData = useSelector(state => state.auth.curentUserData)
   const { posts, tags } = useSelector(state => state.posts)
 
-  const isPostsLoading = true//posts.status === 'loading'
+  const isPostsLoading = posts.status === 'loading'
   const isTagsLoading = tags.status === 'loading'
   const { curentSort } = useParams()
   // const sort = curentSort ? curentSort : 'new'
@@ -59,7 +55,7 @@ export const Home = () => {
 
       <Grid container spacing={4}>
         <Grid xs={8} item>
-          <Posts
+          <PostsBlock
             isPostsLoading={isPostsLoading}
             items={posts.items}
             curentUserId={curentUserData?._id}
