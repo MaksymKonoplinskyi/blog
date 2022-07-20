@@ -5,7 +5,9 @@ import cors from 'cors'
 import mongoose from 'mongoose';
 import { registerValidation, loginValidation, postCreateValidation } from './validations.js'
 import { checkAuth, handleValidationErrors } from './utils/index.js'
-import { UserController, PostController } from './controllers/index.js';
+import { UserController, PostController, CommentController } from './controllers/index.js';
+import checkAftorComent from './utils/checkAftorComent.js';
+import checkAftorPost from './utils/checkAftorPost.js';
 
 
 mongoose.connect('mongodb+srv://admin:qawedrQ3dd@cluster0.eq52f.mongodb.net/blog?retryWrites=true&w=majority',
@@ -51,10 +53,13 @@ app.get('/postsPopular', PostController.getAllPopular);
 app.get('/posts/tags', PostController.getLastTags);
 app.get('/posts/:id', PostController.getOne);
 app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, PostController.create);
-app.delete('/posts/:id', checkAuth, PostController.remove);
+app.delete('/posts/:id', checkAuth, checkAftorPost, PostController.remove);
 app.patch('/posts/:id', checkAuth, postCreateValidation,
-    handleValidationErrors, PostController.update);
+    handleValidationErrors, checkAftorPost, PostController.update);
 
+app.post('/comments', checkAuth, CommentController.create);
+app.get('/comments/:id', checkAuth, CommentController.getAll);
+app.patch('/comments/:id', checkAuth, checkAftorComent, CommentController.update);
 app.listen(4444, (err) => {
     err ? console.log(err) : console.log('Server OK');
-})  
+})   
