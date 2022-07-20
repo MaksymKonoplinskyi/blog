@@ -58,8 +58,11 @@ app.patch('/posts/:id', checkAuth, postCreateValidation,
     handleValidationErrors, checkAftorPost, PostController.update);
 
 app.post('/comments', checkAuth, CommentController.create);
-app.get('/comments/:id', checkAuth, CommentController.getAll);
+app.get('/comments/:postId', checkAuth, CommentController.getAll);
+app.get('/comment/:id', checkAuth, CommentController.getOne);
 app.patch('/comments/:id', checkAuth, checkAftorComent, CommentController.update);
+app.delete('/comment/:id', checkAuth, CommentController.remove);
+
 app.listen(4444, (err) => {
     err ? console.log(err) : console.log('Server OK');
 })   

@@ -48,13 +48,30 @@ export const create = async (req, res) => {
 
 export const getAll = async (req, res) => {
     try {
-        const postId = req.params.id;
+        const postId = req.params.postId;
         const comments = await CommentModel.find(
             {
                 postId: postId,
             }
         );
         res.json(comments);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: 'Не удалось получить комментарии',
+        });
+    }
+};
+
+export const getOne = async (req, res) => {
+    try {
+        const commentId = req.params.id;
+        const comment = await CommentModel.findOne(
+            {
+                _id: commentId,
+            }
+        );
+        res.json(comment);
     } catch (err) {
         console.log(err);
         res.status(500).json({
@@ -88,40 +105,39 @@ export const update = async (req, res) => {
     }
 };
 
-// export const remove = async (req, res) => {
-//     try {
-//         const postId = req.params.id;
+export const remove = async (req, res) => {
+    try {
+        const commentId = req.params.id;
+        CommentModel.findOneAndDelete(
+            {
+                _id: commentId,
+            },
+            (err, doc) => {
+                if (err) {
+                    console.log(err);
+                    return res.status(500).json({
+                        message: 'Не удалось удалить комментарий',
+                    });
+                }
 
-//         PostModel.findOneAndDelete(
-//             {
-//                 _id: postId,
-//             },
-//             (err, doc) => {
-//                 if (err) {
-//                     console.log(err);
-//                     return res.status(500).json({
-//                         message: 'Не удалось удалить статью',
-//                     });
-//                 }
+                if (!doc) {
+                    return res.status(404).json({
+                        message: 'Комментарий не найден',
+                    });
+                }
 
-//                 if (!doc) {
-//                     return res.status(404).json({
-//                         message: 'Статья не найдена',
-//                     });
-//                 }
-
-//                 res.json({
-//                     success: true,
-//                 });
-//             },
-//         );
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json({
-//             message: 'Не удалось получить статьи',
-//         });
-//     }
-// };
+                res.json({
+                    success: true,
+                });
+            },
+        );
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: 'Не удалось получить статьи',
+        });
+    }
+};
 
 
 
