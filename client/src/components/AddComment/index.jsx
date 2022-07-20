@@ -14,7 +14,7 @@ export const Index = () => {
   const onClickSend = async () => {
     
     console.log(text);
-    const data = {}//await dispatch(fetchAuth(values))
+    // const data = {}//await dispatch(fetchAuth(values))
   }
   return (
     <>
