@@ -9,31 +9,17 @@ import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 
 import styles from './Post.module.scss';
-import { PostSkeleton } from './Skeleton';
 import { fetchRemovePost } from '../../redux/slices/posts';
 import { PostCreationInfo } from '../PostCreationInfo';
 
 export const FullPostInfo = ({
-  id,
-  title,
-  createdAt,
-  imageUrl,
-  user,
-  viewsCount,
-  commentsCount,
-  tags,
-  children,
-  isLoading,
+  curentPostData,
   isEditable,
 }) => {
   const dispatch = useDispatch()
-  if (isLoading) {
-    return <PostSkeleton />;
-  }
-
-  const onClickRemove = () => {
+   const onClickRemove = () => {
     if (window.confirm('Вы действитльно хотите удалить статью?')) {
-      dispatch(fetchRemovePost(id))
+      dispatch(fetchRemovePost(curentPostData.id))
     }
 
   };
@@ -42,7 +28,7 @@ export const FullPostInfo = ({
     <div className={clsx(styles.root, { [styles.rootFull]: true })}>
       {isEditable && (
         <div className={styles.editButtons}>
-          <Link to={`/posts/${id}/edit`}>
+          <Link to={`/posts/${curentPostData.id}/edit`}>
             <IconButton color="primary">
               <EditIcon />
             </IconButton>
@@ -52,36 +38,38 @@ export const FullPostInfo = ({
           </IconButton>
         </div>
       )}
-      {imageUrl && (
+      {curentPostData.imageUrl && (
         <img
           className={clsx(styles.image, { [styles.imageFull]: true })}
-          src={imageUrl}
-          alt={title}
+          src={`http://localhost:4444${curentPostData.imageUrl}`}
+          alt={curentPostData.title}
         />
       )}
       <div className={styles.wrapper}>
-        <PostCreationInfo {...user} createdAt={createdAt} />
-      
+        <PostCreationInfo {...curentPostData.user} createdAt={curentPostData.createdAt} />
+
         <div className={styles.indention}>
           <h2 className={clsx(styles.title, { [styles.titleFull]: true })}>
-            {title}
+            {curentPostData.title}
           </h2>
           <ul className={styles.tags}>
-            {tags.map((name) => (
+            {curentPostData.tags.map((name) => (
               <li key={name}>
                 <Link to={`/tag/${name}`}>#{name}</Link>
               </li>
             ))}
           </ul>
-          {children && <div className={styles.content}>{children}</div>}
+          {curentPostData.children && <div className={styles.content}>
+            {curentPostData.children}
+          </div>}
           <ul className={styles.postDetails}>
             <li>
               <EyeIcon />
-              <span>{viewsCount}</span>
+              <span>{curentPostData.viewsCount}</span>
             </li>
             <li>
               <CommentIcon />
-              <span>{commentsCount}</span>
+              <span>{curentPostData.commentsCount}</span>
             </li>
           </ul>
         </div>

@@ -6,43 +6,32 @@ import { Index } from "../components/AddComment";
 import { CommentsBlock } from "../components/CommentsBlock";
 import { fetchGetFullPost } from "../redux/slices/post";
 import { FullPostInfo } from "../components/FullPostInfo";
+import { PostSkeleton } from "../components/Post/Skeleton";
 
 export const FullPost = () => {
   const dispatch = useDispatch()
   const { id } = useParams();
   const data = useSelector(state => state.post.curentPostData)
-  //const curentPostStatus = useSelector(state => state.post.status)
-  //const isPostsLoading = curentPostStatus === 'loading'
+  const curentPostStatus = useSelector(state => state.post.status)
+  const isCurentPostsLoading = curentPostStatus === 'loading'
   const curentUserData = useSelector(state => state.auth.curentUserData)
 
-  // console.log(dispatch(fetchGetFullPost(id)));
   React.useEffect(() => {
     dispatch(fetchGetFullPost(id))
   }, [dispatch, id])
-  // React.useEffect(() => {
-  //   dispatch(fetchTags())
-  // }, [dispatch])
-  // if (isPostsLoading) {
-  //   return <Post isLoading={isPostsLoading} isFullPost />
-  // }
-  // console.log(data.text);
-  //const [text, setText] = React.useState('');
 
   return (
     <>
+      {isCurentPostsLoading ? <PostSkeleton /> : (
       <FullPostInfo
-        id={data._id}
-        title={data.title}
-        imageUrl={data.imageUrl ? `http://localhost:4444${data.imageUrl}` : ''}
-        user={data.user}
-        createdAt={data.createdAt}
-        viewsCount={data.viewsCount}
-        commentsCount={3}
-        tags={data.tags}
+        curentPostData={data}
+        // commentsCount={3}
         isEditable={curentUserData?._id === data.user._id}
       >
         <ReactMarkdown children={data.text} />
-      </FullPostInfo>
+      </FullPostInfo>  
+      )
+      }
       <CommentsBlock
         items={[
           {
