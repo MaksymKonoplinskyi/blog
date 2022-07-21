@@ -85,7 +85,7 @@ export const update = async (req, res) => {
         const commentId = req.params.id;
 
         await CommentModel.updateOne(
-            {
+            { 
                 _id: commentId,
             },
             {

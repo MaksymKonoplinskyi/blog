@@ -8,15 +8,12 @@ export default async (req, res, next) => {
         try {
 
             const postId = req.params.id
-            console.log(postId);
-            const {user} = await PostModel.findOne(
+            const { user } = await PostModel.findOne(
                 {
                     _id: postId,
                 }
             );
-            console.log(user.toString());
             const decoded = jwt.verify(token, 'secret123');
-            console.log(decoded._id);
             if (user.toString() === decoded._id) {
                 next()
             } else {
@@ -28,7 +25,7 @@ export default async (req, res, next) => {
             return res.status(403).json({
                 message: 'Нет доступа',
             });
-        } 
+        }
     } else {
         return res.status(403).json({
             message: 'Нет доступа (Вы не авторизированы)',
