@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
@@ -17,9 +17,13 @@ export const FullPostInfo = ({
   isEditable,
 }) => {
   const dispatch = useDispatch()
-   const onClickRemove = () => {
+  let navigate = useNavigate();
+
+   const onClickRemove = async () => {
     if (window.confirm('Вы действитльно хотите удалить статью?')) {
-      dispatch(fetchRemovePost(curentPostData.id))
+      console.log(1);
+      await dispatch(fetchRemovePost(curentPostData._id))
+      navigate('/')
     }
 
   };
@@ -28,14 +32,16 @@ export const FullPostInfo = ({
     <div className={clsx(styles.root, { [styles.rootFull]: true })}>
       {isEditable && (
         <div className={styles.editButtons}>
-          <Link to={`/posts/${curentPostData.id}/edit`}>
+          <Link to={`/posts/${curentPostData._id}/edit`}>
             <IconButton color="primary">
               <EditIcon />
             </IconButton>
           </Link>
+          
           <IconButton onClick={onClickRemove} color="secondary">
             <DeleteIcon />
           </IconButton>
+
         </div>
       )}
       {curentPostData.imageUrl && (

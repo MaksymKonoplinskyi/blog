@@ -1,43 +1,52 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from '../../axios'
 
-export const fetchPostsNew = createAsyncThunk('posts/fetchPostsNew', async () => {
-    const { data } = await axios.get('/postsNew')
+export const fetchCreateComment = createAsyncThunk('posts/fetchCreateComment', async () => {
+    const { data } = await axios.post('/comment')
     return data;
 })
 
-export const fetchPostsPopular = createAsyncThunk('posts/fetchPostsPopular', async () => {
-    const { data } = await axios.get('/postsPopular')
+export const fetchAllComments = createAsyncThunk('posts/fetchAllComments', async (postId) => {
+    const { data } = await axios.get(`/comments/:${postId}`)
     return data;
 })
 
-export const fetchRemovePost = createAsyncThunk('posts/fetchRemovePost', async (id) => {
-const { data } = await axios.delete(`/posts/${id}`)
+export const fetchOneComment = createAsyncThunk('posts/fetchOneComments', async (id) => {
+    const { data } = await axios.get(`/comment/:${id}`)
     return data;
 })
+
+export const fetchPatchComment = createAsyncThunk('posts/fetchPatchComments', async (id) => {
+    const { data } = await axios.patch(`/comment/:${id}`)
+    return data;
+})
+
+export const fetchRemoveComment = createAsyncThunk('posts/fetchRemoveComment', async (id) =>
+    await axios.delete(`/comment/:${id}`)
+)
 
 const initialState = {
-    items: [],
-    status: 'loading'
+        items: [],
+        status: 'loading'
 
 }
 
 const postsSlice = createSlice({
-    name: 'posts',
+    name: 'comments',
     initialState,
     reducers: {},
     extraReducers: {
 
         // Получение статей в порядке популярности
-        [fetchPostsPopular.pending]: (state) => {
+        [fetchCreateComment.pending]: (state) => {
             state.items = [];
             state.status = 'loading';
         },
-        [fetchPostsPopular.fulfilled]: (state, action) => {
+        [fetchCreateComment.fulfilled]: (state, action) => {
             state.items = action.payload;
             state.status = 'loaded';
         },
-        [fetchPostsPopular.rejected]: (state) => {
+        [fetchCreateComment.rejected]: (state) => {
             state.items = [];
             state.status = 'error';
         },
@@ -58,7 +67,7 @@ const postsSlice = createSlice({
 
 
         // Удаление статьи
-        [fetchRemovePost.fulfilled]: (state, action) => {
+        [fetchRemovePost.pending]: (state, action) => {
             state.items = state.items.filter(obj => obj._id !== action.meta.arg);
         },
 
