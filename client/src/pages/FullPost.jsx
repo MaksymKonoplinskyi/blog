@@ -40,7 +40,7 @@ export const FullPost = () => {
       }
       {isCommentsLoading ? <CommentsBlockSkeleton /> : (
         <CommentsBlock
-          items={commentsItems}
+          items={commentsItems} curentUserId={curentUserData?._id}
         >
           <Index />
         </CommentsBlock>

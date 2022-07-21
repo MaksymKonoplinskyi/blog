@@ -8,7 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 
-import styles from './Post.module.scss';
+import styles from '../Post/Post.module.scss';
 import { fetchRemovePost } from '../../redux/slices/posts';
 import { PostCreationInfo } from '../PostCreationInfo';
 
