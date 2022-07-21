@@ -19,8 +19,8 @@ export const fetchEditPost = createAsyncThunk('post/fetchEditPost', async (patch
 })
 // Full Post end
 // Comments for curent full post start
-export const fetchCreateComment = createAsyncThunk('posts/fetchCreateComment', async () => {
-    const { data } = await axios.post('/comment')
+export const fetchCreateComment = createAsyncThunk('posts/fetchCreateComment', async (params) => {
+    const { data } = await axios.post('/comment', params)
     return data;
 })
 
@@ -115,6 +115,24 @@ const fullPostSlice = createSlice({
             state.comments.items = [];
         },
 
+
+        // [fetchCreateComment.pending]: (state) => {
+        //     state.comments.status = 'loading';
+        //     //state.comments.items = [];
+        // },
+        // [fetchCreateComment.fulfilled]: (state, action) => {
+        //     state.comments.status = 'loaded';
+        //     state.comments.items = [
+        //         ...state.comments.items,
+        //         action.payload
+        //     ]
+        //     // (state.comments.items).push(action.payload) ;
+        //     console.log(action.payload);
+        // },
+        // [fetchCreateComment.rejected]: (state) => {
+        //     state.comments.status = 'error';
+        //     state.comments.items = [];
+        // },
 
 
 

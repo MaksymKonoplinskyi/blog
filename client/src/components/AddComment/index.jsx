@@ -5,16 +5,23 @@ import styles from "./AddComment.module.scss";
 import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllComments, fetchCreateComment } from "../../redux/slices/post";
+import { useParams } from "react-router-dom";
 
 export const Index = () => {
   const curentUserData = useSelector(state => state.auth.curentUserData)
-  // console.log(curentUserData);
+ const dispatch = useDispatch()
   const [text, setText] = React.useState('');
+  const { id } = useParams();
+
+ const params ={
+  text,
+  postId:id
+ }
   const onClickSend = async () => {
-    
-    console.log(text);
-    // const data = {}//await dispatch(fetchAuth(values))
+    await dispatch(fetchCreateComment(params))
+    dispatch(fetchAllComments(id))
   }
   return (
     <>
