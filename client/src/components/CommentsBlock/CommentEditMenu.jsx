@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { fetchAllComments, fetchRemoveComment } from "../../redux/slices/post";
 
 
-export const CommentEditMenu = ({ curentComment, children, isLoading }) => {
+export const CommentEditMenu = ({ curentComment}) => {
 
   const dispatch = useDispatch()
   const {id} = useParams()

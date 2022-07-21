@@ -12,10 +12,6 @@ import { CommentEditMenu } from "./CommentEditMenu";
 
 export const CommentsBlock = ({ items, children, curentUserId }) => {
 
-  const onClickRemove = () => { 
-
-  }
-
   return (
     <SideBlock title="Комментарии">
 
