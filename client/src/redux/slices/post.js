@@ -110,9 +110,11 @@ const fullPostSlice = createSlice({
         [fetchAllComments.fulfilled]: (state, action) => {
             state.comments.status = 'loaded';
             state.comments.items = action.payload;
-            
+            state.curentPostData = {
+                ...state.curentPostData,
+                commentsCount: action.payload.length}
             // state.curentPostData = 7// [action.payload].length()
-             console.log(11);
+             console.log(action.payload.length);
         },
         [fetchAllComments.rejected]: (state) => {
             state.comments.status = 'error';
