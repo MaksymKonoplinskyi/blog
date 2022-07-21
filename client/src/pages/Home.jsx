@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Grid';
 import { TagsBlock } from '../components/TagsBlock/TagsBlock';
-import { CommentsBlock } from '../components/CommentsBlock';
+import { CommentsBlock } from '../components/CommentsBlock/CommentsBlock';
 import { fetchPostsNew, fetchPostsPopular } from '../redux/slices/posts';
 import { Link, useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
