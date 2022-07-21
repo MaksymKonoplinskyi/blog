@@ -41,7 +41,6 @@ export const FullPost = () => {
       {isCommentsLoading ? <CommentsBlockSkeleton /> : (
         <CommentsBlock
           items={commentsItems}
-          isLoading={false}
         >
           <Index />
         </CommentsBlock>
