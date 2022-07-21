@@ -116,23 +116,9 @@ const fullPostSlice = createSlice({
         },
 
 
-        // [fetchCreateComment.pending]: (state) => {
-        //     state.comments.status = 'loading';
-        //     //state.comments.items = [];
-        // },
-        // [fetchCreateComment.fulfilled]: (state, action) => {
-        //     state.comments.status = 'loaded';
-        //     state.comments.items = [
-        //         ...state.comments.items,
-        //         action.payload
-        //     ]
-        //     // (state.comments.items).push(action.payload) ;
-        //     console.log(action.payload);
-        // },
-        // [fetchCreateComment.rejected]: (state) => {
-        //     state.comments.status = 'error';
-        //     state.comments.items = [];
-        // },
+        [fetchCreateComment.rejected]: (state) => {
+            state.comments.status = 'error';
+        },
 
 
 
