@@ -12,7 +12,9 @@ import { CommentEditMenu } from "./CommentEditMenu";
 
 export const CommentsBlock = ({ items, children, curentUserId }) => {
 
-  // const onClickRemove = () => { }
+  const onClickRemove = () => { 
+
+  }
 
   return (
     <SideBlock title="Комментарии">
@@ -34,7 +36,7 @@ export const CommentsBlock = ({ items, children, curentUserId }) => {
               />
               { 
               (obj.user._id === curentUserId) && (
-                <CommentEditMenu />
+                <CommentEditMenu curentComment={obj}/>
               )}
             </ListItem>
             <Divider variant="inset" component="li" />

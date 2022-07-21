@@ -19,9 +19,8 @@ export const FullPostInfo = ({
   const dispatch = useDispatch()
   let navigate = useNavigate();
 
-   const onClickRemove = async () => {
+  const onClickRemove = async () => {
     if (window.confirm('Вы действитльно хотите удалить статью?')) {
-      console.log(1);
       await dispatch(fetchRemovePost(curentPostData._id))
       navigate('/')
     }
@@ -37,7 +36,7 @@ export const FullPostInfo = ({
               <EditIcon />
             </IconButton>
           </Link>
-          
+
           <IconButton onClick={onClickRemove} color="secondary">
             <DeleteIcon />
           </IconButton>

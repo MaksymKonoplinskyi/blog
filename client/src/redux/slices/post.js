@@ -39,9 +39,11 @@ export const fetchPatchComment = createAsyncThunk('posts/fetchPatchComments', as
     return data;
 })
 
-export const fetchRemoveComment = createAsyncThunk('posts/fetchRemoveComment', async (id) =>
-    await axios.delete(`/comment/:${id}`)
-)
+export const fetchRemoveComment = createAsyncThunk('posts/fetchRemoveComment', async (id) => {
+    const { data } = await axios.delete(`/comment/${id}`)
+    return data;
+})
+
 // Comments for curent full post end
 
 
@@ -108,7 +110,9 @@ const fullPostSlice = createSlice({
         [fetchAllComments.fulfilled]: (state, action) => {
             state.comments.status = 'loaded';
             state.comments.items = action.payload;
-            console.log(action.payload);
+            
+            // state.curentPostData = 7// [action.payload].length()
+             console.log(11);
         },
         [fetchAllComments.rejected]: (state) => {
             state.comments.status = 'error';
@@ -120,7 +124,9 @@ const fullPostSlice = createSlice({
             state.comments.status = 'error';
         },
 
-
+        [fetchRemoveComment.rejected]: (state) => {
+            state.comments.status = 'error';
+        },
 
         // Comments for curent full post end
     }
