@@ -71,7 +71,6 @@ export const getOne = async (req, res) => {
             },
             (err, doc) => {
                 if (err) {
-                    console.log(err);
                     return res.status(500).json({
                         message: 'Не удалось вернуть статью',
                     });

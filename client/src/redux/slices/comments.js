@@ -26,12 +26,13 @@ export const fetchRemoveComment = createAsyncThunk('posts/fetchRemoveComment', a
 )
 
 const initialState = {
+    post: {
         items: [],
         status: 'loading'
-
+    }
 }
 
-const postsSlice = createSlice({
+const commentsSlice = createSlice({
     name: 'comments',
     initialState,
     reducers: {},
@@ -51,25 +52,25 @@ const postsSlice = createSlice({
             state.status = 'error';
         },
 
-        // Получение новых статей
-        [fetchPostsNew.pending]: (state) => {
-            state.items = [];
-            state.status = 'loading';
-        },
-        [fetchPostsNew.fulfilled]: (state, action) => {
-            state.items = action.payload;
-            state.status = 'loaded';
-        },
-        [fetchPostsNew.rejected]: (state) => {
-            state.items = [];
-            state.status = 'error';
-        },
+        // // Получение новых статей
+        // [fetchPostsNew.pending]: (state) => {
+        //     state.items = [];
+        //     state.status = 'loading';
+        // },
+        // [fetchPostsNew.fulfilled]: (state, action) => {
+        //     state.items = action.payload;
+        //     state.status = 'loaded';
+        // },
+        // [fetchPostsNew.rejected]: (state) => {
+        //     state.items = [];
+        //     state.status = 'error';
+        // },
 
 
-        // Удаление статьи
-        [fetchRemovePost.pending]: (state, action) => {
-            state.items = state.items.filter(obj => obj._id !== action.meta.arg);
-        },
+        // // Удаление статьи
+        // [fetchRemovePost.pending]: (state, action) => {
+        //     state.items = state.items.filter(obj => obj._id !== action.meta.arg);
+        // },
 
         // [fetchRemovePost.rejected]: (state) => {
         //     state.posts.items = [];
@@ -78,4 +79,4 @@ const postsSlice = createSlice({
     }
 })
 
-export const postsReducer = postsSlice.reducer;
+export const commentsReducer = commentsSlice.reducer;

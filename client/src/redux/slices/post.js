@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from '../../axios'
 
+// Full Post start
 export const fetchGetFullPost = createAsyncThunk('post/fetchGetFullPost', async (id) => {
     const { data } = await axios.get(`/posts/${id}`)
     return data;
@@ -12,19 +13,52 @@ export const fetchCriateNewPost = createAsyncThunk('post/fetchCriateNewPost', as
 })
 
 export const fetchEditPost = createAsyncThunk('post/fetchEditPost', async (patchData) => {
-    const {id, fields} = patchData;
+    const { id, fields } = patchData;
     const { data } = await axios.patch(`/posts/${id}`, fields)
-    // console.log(fields);
     return data;
 })
+// Full Post end
+// Comments for curent full post start
+export const fetchCreateComment = createAsyncThunk('posts/fetchCreateComment', async () => {
+    const { data } = await axios.post('/comment')
+    return data;
+})
+
+export const fetchAllComments = createAsyncThunk('posts/fetchAllComments', async (postId) => {
+    const { data } = await axios.get(`/comments/${postId}`)
+    return data;
+})
+
+export const fetchOneComment = createAsyncThunk('posts/fetchOneComments', async (id) => {
+    const { data } = await axios.get(`/comment/${id}`)
+    return data;
+})
+
+export const fetchPatchComment = createAsyncThunk('posts/fetchPatchComments', async (id) => {
+    const { data } = await axios.patch(`/comment/${id}`)
+    return data;
+})
+
+export const fetchRemoveComment = createAsyncThunk('posts/fetchRemoveComment', async (id) =>
+    await axios.delete(`/comment/:${id}`)
+)
+// Comments for curent full post end
+
+
+
+// Коментарии к полному поста
 
 const initialState = {
     curentPostData: null,
     status: 'loading',
- 
+    comments: {
+        items: [],
+        status: 'loading'
+    }
+
 }
 
-const postSlice = createSlice({
+const fullPostSlice = createSlice({
     name: 'post',
     initialState,
     reducers: {
@@ -34,7 +68,7 @@ const postSlice = createSlice({
     },
     extraReducers: {
 
-        // Получение одной статьи
+        // Full Post start
         [fetchGetFullPost.pending]: (state) => {
             state.status = 'loading';
             state.curentPostData = null;
@@ -42,7 +76,6 @@ const postSlice = createSlice({
         [fetchGetFullPost.fulfilled]: (state, action) => {
             state.status = 'loaded';
             state.curentPostData = action.payload;
-           // navigate(`/fullPost/${state.curentPostData._id}`)
         },
         [fetchGetFullPost.rejected]: (state) => {
             state.status = 'error';
@@ -68,16 +101,35 @@ const postSlice = createSlice({
         },
         [fetchEditPost.fulfilled]: (state, action) => {
             state.status = 'loaded';
-           state.curentPostData = action.payload;
+            state.curentPostData = action.payload;
         },
         [fetchEditPost.rejected]: (state) => {
             state.status = 'Ошибка при редактировании статьи';
             state.curentPostData = null;
         },
+        // Full Post end
+        // Comments for curent full post start
+        [fetchAllComments.pending]: (state) => {
+            state.comments.status = 'loading';
+            state.comments.items = [];
+        },
+        [fetchAllComments.fulfilled]: (state, action) => {
+            state.comments.status = 'loaded';
+            state.comments.items = action.payload;
+            console.log(action.payload);
+        },
+        [fetchAllComments.rejected]: (state) => {
+            state.comments.status = 'error';
+            state.comments.items = [];
+        },
 
+
+
+
+        // Comments for curent full post end
     }
 })
 
 // export const { postout } = postSlice.actions
 
-export const postReducer = postSlice.reducer;
+export const fullPostReducer = fullPostSlice.reducer;
