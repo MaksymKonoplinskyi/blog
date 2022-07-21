@@ -95,14 +95,6 @@ const fullPostSlice = createSlice({
             state.curentPostData = null;
         },
 
-        [fetchEditPost.pending]: (state) => {
-            state.status = 'loading';
-            state.curentPostData = null;
-        },
-        [fetchEditPost.fulfilled]: (state, action) => {
-            state.status = 'loaded';
-            state.curentPostData = action.payload;
-        },
         [fetchEditPost.rejected]: (state) => {
             state.status = 'Ошибка при редактировании статьи';
             state.curentPostData = null;

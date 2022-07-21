@@ -153,7 +153,7 @@ export const update = async (req, res) => {
     try {
         const postId = req.params.id;
 
-        await PostModel.updateOne(
+        const post = await PostModel.updateOne(
             {
                 _id: postId,
             },

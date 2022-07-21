@@ -20,7 +20,7 @@ export const FullPost = () => {
   const commentsItems = useSelector(state => state.fullPost.comments.items)
   const curentCommentsStatus = useSelector(state => state.fullPost.comments.status)
   const isCommentsLoading = curentCommentsStatus === 'loading'
-  console.log(commentsItems);
+  // console.log(commentsItems);
 
   React.useEffect(() => {
     dispatch(fetchGetFullPost(id))

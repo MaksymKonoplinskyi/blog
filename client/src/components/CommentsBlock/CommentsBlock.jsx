@@ -16,7 +16,8 @@ export const CommentsBlock = ({ items, children, isLoading }) => {
           <React.Fragment key={index}>
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
-                <Avatar alt={obj.user.fullName} src={obj.user.avatarUrl} />
+                <Avatar alt={obj.user.fullName} 
+                src={`http://localhost:4444${obj.user.avatarUrl}`} />
               </ListItemAvatar>
               <ListItemText
                 primary={obj.user.fullName}

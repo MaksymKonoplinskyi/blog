@@ -86,7 +86,6 @@ export const AddPost = () => {
       const data = isEditing
         ? await dispatch(fetchEditPost(patchData))
         : await dispatch(fetchCriateNewPost(fields))
-      console.log(data.payload._id);
       const _id = isEditing ? id : data.payload._id
 
       navigate(`/fullPost/${_id}`)
