@@ -6,8 +6,8 @@ export const create = async (req, res) => {
     try {
         const doc = new CommentModel({
             text: req.body.text,
-            postId: req.body.postId,
-            userId: req.userId,
+            post: req.body.postId,
+            user: req.userId,
         });
         const comment = await doc.save();
         PostModel.findOneAndUpdate(
@@ -51,9 +51,9 @@ export const getAll = async (req, res) => {
         const postId = req.params.postId;
         const comments = await CommentModel.find(
             {
-                postId: postId,
+                post: postId,
             }
-        ).populate('userId')//.exec();
+        ).populate('user')//.exec();
         res.json(comments);
     } catch (err) {
         console.log(err);
