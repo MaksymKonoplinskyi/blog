@@ -85,7 +85,7 @@ export const update = async (req, res) => {
         const commentId = req.params.id;
 
         await CommentModel.updateOne(
-            { 
+            {
                 _id: commentId,
             },
             {
@@ -108,7 +108,6 @@ export const update = async (req, res) => {
 export const remove = async (req, res) => {
     try {
         const commentId = req.params.id;
-
         CommentModel.findOneAndDelete(
             {
                 _id: commentId,
