@@ -53,7 +53,7 @@ export const getAll = async (req, res) => {
             {
                 postId: postId,
             }
-        );
+        ).populate('userId')//.exec();
         res.json(comments);
     } catch (err) {
         console.log(err);
