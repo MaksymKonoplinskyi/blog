@@ -19,9 +19,7 @@ export const CommentsBlock = ({ items, children, curentUserId }) => {
         {items.map((obj, index) => (
 
           <React.Fragment key={index}>
-
             <ListItem alignItems="flex-start">
-
               <ListItemAvatar>
                 <Avatar alt={obj.user.fullName}
                   src={`http://localhost:4444${obj.user.avatarUrl}`} />
