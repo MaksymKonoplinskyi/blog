@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './Comment.module.scss';
+// import styles from "./Comment.module.scss";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
@@ -35,7 +35,7 @@ export const CommentsBlock = ({ items, curentUserId }) => {
                 />
                 {
                   (obj.user._id === curentUserId) && (
-                    <CommentEditMenu className={styles.editButtons} curentComment={obj} index={index} />
+                    <CommentEditMenu curentComment={obj} index={index} />
                   )}
               </ListItem>
               <Divider variant="inset" component="li" />
