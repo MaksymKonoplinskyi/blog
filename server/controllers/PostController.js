@@ -115,24 +115,18 @@ export const remove = async (req, res) => {
                         message: 'Статья не найдена',
                     });
                 }
-                
-                // res.json({
-                //     success: true,
-                // });
             },
         );
-
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Не удалось получить статьи',
+            message: 'Не удалось получить статью',
         });
     }
+
     try {
         const postId = req.params.id;
-        console.log(postId);
         CommentModel.deleteMany(
-
             {
                 post: postId,
             },
@@ -143,7 +137,6 @@ export const remove = async (req, res) => {
                         message: 'Не удалось удалить коментарии к статье',
                     });
                 }
-
                 res.json({
                     success: true,
                 });
@@ -152,36 +145,9 @@ export const remove = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Не удалось получить статьи',
+            message: 'Не удалось удалить комментарии',
         });
     }
-    // try {
-    //     const postId = req.params.id;
-    //     console.log(postId);
-    //     CommentModel.deleteMany(
-
-    //         { 
-    //             post: postId,
-    //         },
-    //         (err) => {
-    //             if (err) {
-    //                 console.log(err);
-    //                 return res.status(500).json({
-    //                     message: 'Не удалось удалить коментарии к статье',
-    //                 });
-    //             }
-
-    //             res.json({
-    //                 success: true,
-    //             });
-    //         },
-    //     );
-    // } catch (err) {
-    //     console.log(err);
-    //     res.status(500).json({
-    //         message: 'Не удалось получить статьи',
-    //     });
-    // }
 };
 
 export const create = async (req, res) => {
