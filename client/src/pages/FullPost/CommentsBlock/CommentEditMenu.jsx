@@ -25,7 +25,6 @@ export const CommentEditMenu = ({ curentComment, index }) => {
     // console.log(curentComment.text);
   }
 
-
   return (
     <div>
       <div className="editButtons">
