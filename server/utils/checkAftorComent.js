@@ -8,13 +8,13 @@ export default async (req, res, next) => {
         try {
 
             const commentId = req.params.id
-            const { userId } = await CommentModel.findOne(
+            const { user } = await CommentModel.findOne(
                 {
                     _id: commentId,
                 }
             )
             const decoded = jwt.verify(token, 'secret123');
-            if (userId.toString() === decoded._id) {
+            if (user.toString() === decoded._id) {
                 next()
             } else {
                 return res.status(403).json({

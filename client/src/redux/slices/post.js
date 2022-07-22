@@ -34,8 +34,9 @@ export const fetchOneComment = createAsyncThunk('posts/fetchOneComments', async 
     return data;
 })
 
-export const fetchPatchComment = createAsyncThunk('posts/fetchPatchComments', async (id) => {
-    const { data } = await axios.patch(`/comment/${id}`)
+export const fetchPatchComment = createAsyncThunk('posts/fetchPatchComments', async (pathCommentData) => {
+    const { commentId, text } = pathCommentData;
+    const { data } = await axios.patch(`/comment/${commentId}`, {text})
     return data;
 })
 
@@ -48,14 +49,13 @@ export const fetchRemoveComment = createAsyncThunk('posts/fetchRemoveComment', a
 
 
 
-// Коментарии к полному поста
-
 const initialState = {
     curentPostData: null,
     status: 'loading',
     comments: {
         items: [],
-        status: 'loading'
+        status: 'loading',
+        editCommentIndex: null,
     }
 
 }
@@ -64,9 +64,10 @@ const fullPostSlice = createSlice({
     name: 'post',
     initialState,
     reducers: {
-        // postout: (state) => {
-        //     state.curentPostData = null
-        // },
+
+        editComentIndex: (state, index) => {
+            state.comments.editCommentIndex = index.payload
+        },
     },
     extraReducers: {
 
@@ -112,14 +113,14 @@ const fullPostSlice = createSlice({
             state.comments.items = action.payload;
             state.curentPostData = {
                 ...state.curentPostData,
-                commentsCount: action.payload.length}
-             console.log(action.payload.length);
+                commentsCount: action.payload.length
+            }
+
         },
         [fetchAllComments.rejected]: (state) => {
             state.comments.status = 'error';
             state.comments.items = [];
         },
-
 
         [fetchCreateComment.rejected]: (state) => {
             state.comments.status = 'error';
@@ -129,10 +130,20 @@ const fullPostSlice = createSlice({
             state.comments.status = 'error';
         },
 
+        [fetchPatchComment.pending]: (state, action) => {
+            state.comments.status = 'loaded';
+            state.comments.editCommentIndex = null;
+        },
+        [fetchPatchComment.rejected]: (state) => {
+            state.comments.status = 'error';
+        },
+
         // Comments for curent full post end
     }
 })
 
 // export const { postout } = postSlice.actions
 
-export const fullPostReducer = fullPostSlice.reducer;
+export const fullPostReducer = fullPostSlice.reducer
+
+export const { editComentIndex } = fullPostSlice.actions

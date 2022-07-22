@@ -11,7 +11,7 @@ import { fetchAllComments } from "../../redux/slices/post";
 import { CommentsBlockSkeleton } from "./CommentsBlock/CommentsBlockSkeleton";
 import { CommentsBlock } from "./CommentsBlock/CommentsBlock";
 import { PostSkeleton } from '../Home/Post/Skeleton'
-import { Index } from "./CommentsBlock/AddComment";
+
 
 
 export const FullPost = () => {
@@ -24,7 +24,6 @@ export const FullPost = () => {
   const commentsItems = useSelector(state => state.fullPost.comments.items)
   const curentCommentsStatus = useSelector(state => state.fullPost.comments.status)
   const isCommentsLoading = curentCommentsStatus === 'loading'
-  // console.log(commentsItems);
 
   React.useEffect(() => {
     dispatch(fetchGetFullPost(id))
@@ -45,9 +44,8 @@ export const FullPost = () => {
       {isCommentsLoading ? <CommentsBlockSkeleton /> : (
         <CommentsBlock
           items={commentsItems} curentUserId={curentUserData?._id}
-        >
-          <Index />
-        </CommentsBlock>
+        />
+
       )}
     </>
 

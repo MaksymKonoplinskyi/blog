@@ -4,10 +4,10 @@ import { IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch } from "react-redux";
-import { fetchAllComments, fetchRemoveComment } from "../../../redux/slices/post";
+import { editComentIndex, fetchAllComments, fetchRemoveComment } from "../../../redux/slices/post";
 
 
-export const CommentEditMenu = ({ curentComment}) => {
+export const CommentEditMenu = ({curentComment, index}) => {
 
   const dispatch = useDispatch()
   const {id} = useParams()
@@ -18,15 +18,18 @@ export const CommentEditMenu = ({ curentComment}) => {
     dispatch(fetchAllComments(id))
     }
    }
+   const onClickEdit = () => {
+    dispatch(editComentIndex(index))
+// console.log(curentComment.text);
+   }
+
 
   return (
     <>
-      <Link to={`/posts/edit`}>
-        <IconButton color="primary">
+        <IconButton onClick={onClickEdit} color="primary">
           <EditIcon />
         </IconButton>
-      </Link>
-
+     
       <IconButton onClick={onClickRemove} color="secondary">
         <DeleteIcon />
       </IconButton>
