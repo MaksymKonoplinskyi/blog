@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-
+import React from "react";
 import styles from "./AddComment.module.scss";
 
 import TextField from "@mui/material/TextField";
@@ -12,12 +11,12 @@ import { useParams } from "react-router-dom";
 export const AddComment = ({ editingComent, isCreationComment, index }) => {
   const curentUserData = useSelector(state => state.auth.curentUserData)
   const dispatch = useDispatch()
-  const [text, setText] = React.useState('');
+  const [text, setText] = React.useState(editingComent?.text);
   const { id } = useParams();
   const params = {
     text,
     postId: id
-  }
+  } 
   const pathCommentData = {
     text,
     commentId: editingComent?._id
@@ -34,9 +33,6 @@ export const AddComment = ({ editingComent, isCreationComment, index }) => {
   const onClickCancel = () =>{
     dispatch(editComentIndex(null))
   }
-  useEffect(() => {
-    setText(editingComent?.text)
-  }, [index])
 
   return (
     <>
