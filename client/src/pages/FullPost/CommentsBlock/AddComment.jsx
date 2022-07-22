@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllComments, fetchCreateComment } from "../../redux/slices/post";
+import { fetchAllComments, fetchCreateComment } from "../../../redux/slices/post";
 import { useParams } from "react-router-dom";
 
 export const Index = () => {

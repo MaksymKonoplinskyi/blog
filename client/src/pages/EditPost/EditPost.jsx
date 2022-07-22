@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import SimpleMDE from 'react-simplemde-editor';
 
 import 'easymde/dist/easymde.min.css';
-import styles from './AddPost.module.scss';
+import styles from './EditPost.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsAuth } from "../../redux/slices/auth";
 import { useNavigate, Navigate, useParams } from 'react-router-dom';

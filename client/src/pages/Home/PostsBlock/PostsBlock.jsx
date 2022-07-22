@@ -1,5 +1,6 @@
 import React from 'react';
 import { Posts } from './Posts';
+
 import { PostsBlockSkeleton } from './PostsBlockSkeleton';
 
 

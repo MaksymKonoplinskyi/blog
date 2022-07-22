@@ -1,12 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Grid';
-import { TagsBlock } from '../components/TagsBlock/TagsBlock';
-import { CommentsBlock } from '../components/CommentsBlock/CommentsBlock';
-import { fetchPostsNew, fetchPostsPopular } from '../redux/slices/posts';
+import { TagsBlock } from '../../components/TagsBlock/TagsBlock';
+
+import { fetchPostsNew, fetchPostsPopular } from '../../redux/slices/posts';
 import { Link, useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { PostsBlock } from '../components/PostsBlock/PostsBlock';
+import { PostsBlock } from './PostsBlock/PostsBlock';
+
 
 
 export const Home = () => {
@@ -63,7 +64,7 @@ export const Home = () => {
         </Grid>
         <Grid xs={4} item>
           <TagsBlock />
-          <CommentsBlock
+          {/* <CommentsBlock
             items={[
               {
                 user: {
@@ -81,7 +82,7 @@ export const Home = () => {
               },
             ]}
             isLoading={false}
-          />
+          /> */}
         </Grid>
       </Grid>
     </>

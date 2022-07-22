@@ -4,7 +4,7 @@ import { IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch } from "react-redux";
-import { fetchAllComments, fetchRemoveComment } from "../../redux/slices/post";
+import { fetchAllComments, fetchRemoveComment } from "../../../redux/slices/post";
 
 
 export const CommentEditMenu = ({ curentComment}) => {

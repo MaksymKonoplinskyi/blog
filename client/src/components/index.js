@@ -1,10 +1,6 @@
 export * from "./TagsBlock/TagsBlock";
 export * from "./TagsBlock/Tags";
 export * from "./TagsBlock/TagsSkeleton";
-export * from "./CommentsBlock/CommentsBlock";
-export * from "./Post";
-export * from "./PostsBlock/Posts";
-export * from "./AddComment";
-export * from "./SideBlock";
-export * from "./Header";
-export * from "./PostsBlock/PostsBlockSkeleton";
+export * from "./SideBlock/SideBlock";
+export * from "./Header/Header";
+

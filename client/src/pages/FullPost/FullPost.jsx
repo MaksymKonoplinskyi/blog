@@ -2,13 +2,17 @@ import React from "react";
 import ReactMarkdown from "react-markdown"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom";
-import { Index } from "../components/AddComment";
-import { CommentsBlock } from "../components/CommentsBlock/CommentsBlock";
-import { fetchGetFullPost } from "../redux/slices/post";
-import { FullPostInfo } from "../components/FullPostInfo";
-import { PostSkeleton } from "../components/Post/Skeleton";
-import { fetchAllComments } from "../redux/slices/post";
-import { CommentsBlockSkeleton } from "../components/CommentsBlock/CommentsBlockSkeleton";
+
+import { fetchGetFullPost } from "../../redux/slices/post";
+import { FullPostInfo } from "./FullPostInfo/FullPostInfo";
+import { fetchAllComments } from "../../redux/slices/post";
+
+
+import { CommentsBlockSkeleton } from "./CommentsBlock/CommentsBlockSkeleton";
+import { CommentsBlock } from "./CommentsBlock/CommentsBlock";
+import { PostSkeleton } from '../Home/Post/Skeleton'
+import { Index } from "./CommentsBlock/AddComment";
+
 
 export const FullPost = () => {
   const dispatch = useDispatch()

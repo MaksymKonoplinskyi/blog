@@ -1,9 +1,10 @@
 import React from "react"
-import { SideBlock } from "../SideBlock"
+
 import { useDispatch, useSelector } from "react-redux"
 import { fetchTags } from "../../redux/slices/allTags"
 import { TagsSkeleton } from "./TagsSkeleton"
 import { Tags } from "./Tags"
+import { SideBlock } from "../SideBlock/SideBlock"
 
 
 export const TagsBlock = () => {
