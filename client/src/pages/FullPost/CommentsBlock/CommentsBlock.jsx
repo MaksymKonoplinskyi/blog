@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './Comment.module.scss'
+import styles from './Comment.module.scss';
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";

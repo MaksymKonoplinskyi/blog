@@ -8,9 +8,8 @@ import 'easymde/dist/easymde.min.css';
 import styles from './EditPost.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsAuth } from "../../redux/slices/auth";
-import { useNavigate, Navigate, useParams } from 'react-router-dom';
+import { useNavigate, Navigate, useParams, Link } from 'react-router-dom';
 import axios from '../../axios'
-
 
 import 'easymde/dist/easymde.min.css';
 import { fetchCriateNewPost, fetchEditPost } from '../../redux/slices/post';
@@ -178,9 +177,9 @@ export const AddPost = () => {
         <Button onClick={onSubmit} size="large" variant="contained">
           {isEditing ? 'Сохранить' : 'Опубликовать'}
         </Button>
-        <a href="/">
-          <Button size="large">Отмена</Button>
-        </a>
+        <Link to="/">
+          <Button size="large" variant="contained">Отмена</Button>
+        </Link>
       </div>
     </Paper>
 
