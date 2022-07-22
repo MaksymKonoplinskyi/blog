@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
@@ -17,12 +17,12 @@ export const FullPostInfo = ({
   isEditable,
 }) => {
   const dispatch = useDispatch()
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const onClickRemove = async () => {
     if (window.confirm('Вы действитльно хотите удалить статью?')) {
-      await dispatch(fetchRemovePost(curentPostData._id))
-      navigate('/')
+       await dispatch(fetchRemovePost(curentPostData._id))
+       navigate('/')
     }
 
   };

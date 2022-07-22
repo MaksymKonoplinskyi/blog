@@ -1,5 +1,6 @@
 
 import PostModel from '../models/Post.js';
+import CommentModel from '../models/Comment.js';
 
 export const getLastTags = async (req, res) => {
     try {
@@ -114,6 +115,34 @@ export const remove = async (req, res) => {
                         message: 'Статья не найдена',
                     });
                 }
+                
+                // res.json({
+                //     success: true,
+                // });
+            },
+        );
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: 'Не удалось получить статьи',
+        });
+    }
+    try {
+        const postId = req.params.id;
+        console.log(postId);
+        CommentModel.deleteMany(
+
+            {
+                post: postId,
+            },
+            (err) => {
+                if (err) {
+                    console.log(err);
+                    return res.status(500).json({
+                        message: 'Не удалось удалить коментарии к статье',
+                    });
+                }
 
                 res.json({
                     success: true,
@@ -126,6 +155,33 @@ export const remove = async (req, res) => {
             message: 'Не удалось получить статьи',
         });
     }
+    // try {
+    //     const postId = req.params.id;
+    //     console.log(postId);
+    //     CommentModel.deleteMany(
+
+    //         { 
+    //             post: postId,
+    //         },
+    //         (err) => {
+    //             if (err) {
+    //                 console.log(err);
+    //                 return res.status(500).json({
+    //                     message: 'Не удалось удалить коментарии к статье',
+    //                 });
+    //             }
+
+    //             res.json({
+    //                 success: true,
+    //             });
+    //         },
+    //     );
+    // } catch (err) {
+    //     console.log(err);
+    //     res.status(500).json({
+    //         message: 'Не удалось получить статьи',
+    //     });
+    // }
 };
 
 export const create = async (req, res) => {
