@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import SimpleMDE from 'react-simplemde-editor';
 
 import 'easymde/dist/easymde.min.css';
-import styles from './EditPost.module.scss';
+import styles from './EditPost.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsAuth } from "../../redux/slices/auth";
 import { useNavigate, Navigate, useParams, Link } from 'react-router-dom';
@@ -154,10 +154,12 @@ export const AddPost = () => {
           <img className={styles.image} src={`http://localhost:4444${imageUrl}`} alt="Uploaded" />
         </>
       )}
+      {/* <div className='title'>1111</div> */}
 
       <br />
       <br />
       <TextField
+      className='title'
         classes={{ root: styles.title }}
         variant="standard"
         placeholder="Заголовок статьи..."
