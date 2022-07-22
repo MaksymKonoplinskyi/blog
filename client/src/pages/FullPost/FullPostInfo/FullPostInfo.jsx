@@ -7,6 +7,7 @@ import DeleteIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
 import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
+import ReactMarkdown from "react-markdown"
 
 import styles from '../../Home/Post/Post.module.scss';
 import { fetchRemovePost } from '../../../redux/slices/posts';
@@ -15,6 +16,7 @@ import { PostCreationInfo } from '../../../components/PostCreationInfo/PostCreat
 export const FullPostInfo = ({
   curentPostData,
   isEditable,
+  children,
 }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
@@ -64,9 +66,7 @@ export const FullPostInfo = ({
               </li>
             ))}
           </ul>
-          {curentPostData.children && <div className={styles.content}>
-            {curentPostData.children}
-          </div>}
+          <ReactMarkdown children={curentPostData.text} />
           <ul className={styles.postDetails}>
             <li>
               <EyeIcon />

@@ -36,9 +36,7 @@ export const FullPost = () => {
         <FullPostInfo
           curentPostData={curentPostData}
           isEditable={curentUserData?._id === curentPostData.user._id}
-        >
-          <ReactMarkdown children={curentPostData.text} />
-        </FullPostInfo>
+        />
       )
       }
       {isCommentsLoading ? <CommentsBlockSkeleton /> : (
