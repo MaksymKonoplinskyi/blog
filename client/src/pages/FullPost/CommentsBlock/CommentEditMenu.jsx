@@ -6,8 +6,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch } from "react-redux";
 import { editComentIndex, fetchAllComments, fetchRemoveComment } from "../../../redux/slices/post";
 // import styles from "./Comment.module.scss";
-import styles from "./Comment.module.css";
-import clsx from 'clsx';
+// import styles from "./Comment.module.css";
+// import clsx from 'clsx';
 
 export const CommentEditMenu = ({ curentComment, index }) => {
 
@@ -27,7 +27,7 @@ export const CommentEditMenu = ({ curentComment, index }) => {
 
 
   return (
-    <div className={clsx(styles.root, { [styles.rootFull]: true })}>
+    <div>
       <div className='editButtons'>
         <IconButton onClick={onClickEdit} color="primary">
           <EditIcon />

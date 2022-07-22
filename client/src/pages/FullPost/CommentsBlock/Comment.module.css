@@ -149,9 +149,9 @@
 
 .editButtons {
   position: absolute;
-  right: 15px;
-  top: 15px;
-  background-color: rgb(245, 0, 0);
+  right: 115px;
+  top: 115px;
+  background-color: rgb(255, 0, 0);
   border-radius: 10px;
   opacity: 1;
   transition: all 0.15s ease-in-out;
