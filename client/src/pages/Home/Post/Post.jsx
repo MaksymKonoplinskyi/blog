@@ -10,6 +10,7 @@ import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined'
 import styles from './Post.module.scss'
 import { fetchRemovePost } from '../../../redux/slices/posts'
 import { PostCreationInfo } from '../../../components/PostInfo/PostCreationInfo'
+import { CountWithIcon } from '../../../components/PostInfo/CountWithIcon'
 
 
 export const Post = ({
@@ -23,6 +24,12 @@ export const Post = ({
       dispatch(fetchRemovePost(postItem._id))
     }
   };
+
+  const { viewsCount, commentsCount } = postItem
+  const countsData = {
+    viewsCount,
+    commentsCount
+  }
 
   return (
     <div className={clsx(styles.root)}>
@@ -58,17 +65,7 @@ export const Post = ({
               </li>
             ))}
           </ul>
-
-          <ul className={styles.postDetails}>
-            <li>
-              <EyeIcon />
-              <span>{postItem.viewsCount}</span>
-            </li>
-            <li>
-              <CommentIcon />
-              <span>{postItem.commentsCount}</span>
-            </li>
-          </ul>
+          <CountWithIcon countsData={countsData} />
         </div>
       </div>
     </div>

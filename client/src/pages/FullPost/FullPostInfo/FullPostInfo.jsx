@@ -5,8 +5,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
-import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import ReactMarkdown from "react-markdown"
 
 import styles from '../../Home/Post/Post.module.scss';
