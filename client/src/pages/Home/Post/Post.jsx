@@ -9,7 +9,7 @@ import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined'
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined'
 import styles from './Post.module.scss'
 import { fetchRemovePost } from '../../../redux/slices/posts'
-import { PostCreationInfo } from '../../../components/PostCreationInfo/PostCreationInfo'
+import { PostCreationInfo } from '../../../components/PostInfo/PostCreationInfo'
 
 
 export const Post = ({

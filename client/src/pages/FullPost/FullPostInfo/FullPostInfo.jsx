@@ -11,7 +11,8 @@ import ReactMarkdown from "react-markdown"
 
 import styles from '../../Home/Post/Post.module.scss';
 import { fetchRemovePost } from '../../../redux/slices/posts';
-import { PostCreationInfo } from '../../../components/PostCreationInfo/PostCreationInfo';
+import { PostCreationInfo } from '../../../components/PostInfo/PostCreationInfo';
+import { CountWithIcon } from '../../../components/PostInfo/CountWithIcon';
 
 export const FullPostInfo = ({
   curentPostData,
@@ -28,6 +29,10 @@ export const FullPostInfo = ({
     }
 
   };
+  const {viewsCount, commentsCount} = curentPostData
+  const countsData = {
+    viewsCount, 
+    commentsCount}
 
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: true })}>
@@ -67,6 +72,9 @@ export const FullPostInfo = ({
             ))}
           </ul>
           <ReactMarkdown children={curentPostData.text} />
+          <CountWithIcon 
+          countsData = {countsData}
+          />
           <ul className={styles.postDetails}>
             <li>
               <EyeIcon />
