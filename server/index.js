@@ -62,6 +62,7 @@ app.get('/comments/:postId', checkAuth, CommentController.getAll);
 app.get('/comment/:id', checkAuth, CommentController.getOne);
 app.patch('/comment/:id', checkAuth, checkAftorComent, CommentController.update);
 app.delete('/comment/:id', checkAuth, CommentController.remove);
+app.get('/posts/withTag/:tag', PostController.getPostsWithTag);
 
 app.listen(4444, (err) => {
     err ? console.log(err) : console.log('Server OK');
