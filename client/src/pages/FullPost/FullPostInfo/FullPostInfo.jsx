@@ -24,15 +24,16 @@ export const FullPostInfo = ({
 
   const onClickRemove = async () => {
     if (window.confirm('Вы действитльно хотите удалить статью?')) {
-       await dispatch(fetchRemovePost(curentPostData._id))
-       navigate('/')
+      await dispatch(fetchRemovePost(curentPostData._id))
+      navigate('/')
     }
 
   };
-  const {viewsCount, commentsCount} = curentPostData
+  const { viewsCount, commentsCount } = curentPostData
   const countsData = {
-    viewsCount, 
-    commentsCount}
+    viewsCount,
+    commentsCount
+  }
 
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: true })}>
@@ -72,10 +73,8 @@ export const FullPostInfo = ({
             ))}
           </ul>
           <ReactMarkdown children={curentPostData.text} />
-          <CountWithIcon 
-          countsData = {countsData}
-          />
-          <ul className={styles.postDetails}>
+          <CountWithIcon countsData={countsData} />
+          {/* <ul className={styles.postDetails}>
             <li>
               <EyeIcon />
               <span>{curentPostData.viewsCount}</span>
@@ -84,7 +83,7 @@ export const FullPostInfo = ({
               <CommentIcon />
               <span>{curentPostData.commentsCount}</span>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </div>
     </div>
