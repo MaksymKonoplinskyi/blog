@@ -8,7 +8,7 @@ import 'easymde/dist/easymde.min.css';
 import styles from './EditPost.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsAuth } from "../../redux/slices/auth";
-import { useNavigate, Navigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../../axios'
 
 import 'easymde/dist/easymde.min.css';
@@ -117,7 +117,7 @@ export const AddPost = () => {
   );
 
   if (!window.localStorage.getItem('token') && !isAuth) {
-    return <Navigate to='/' />
+    navigate(`/`)
   }
 
   return (
@@ -158,7 +158,6 @@ export const AddPost = () => {
           {isEditing ? 'Сохранить' : 'Опубликовать'}
         </Button>
           <Button onClick={onCancel} size="large" variant="contained">Отмена</Button>
-
       </div>
     </Paper>
 
