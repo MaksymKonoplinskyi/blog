@@ -12,7 +12,8 @@ export const fetchPostsPopular = createAsyncThunk('posts/fetchPostsPopular', asy
 })
 
 export const fetchPostsWithTag = createAsyncThunk('posts/fetchPostsWithTag', async (tag) => {
-    const { data } = await axios.get(`/posts/withTag/${tag}`)
+    console.log(tag);
+   const { data } = await axios.get(`/posts/withTag/${tag}`)
     return data;
 })
 
@@ -60,7 +61,7 @@ const postsSlice = createSlice({
             state.status = 'error';
         },
 
-        // Получение статей по тегу
+       // Получение статей по тегу
         [fetchPostsWithTag.pending]: (state) => {
             state.items = [];
             state.status = 'loading';
