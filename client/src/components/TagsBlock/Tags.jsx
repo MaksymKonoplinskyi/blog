@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import List from "@mui/material/List"
 import ListItem from "@mui/material/ListItem"
 import ListItemButton from "@mui/material/ListItemButton"
@@ -14,7 +14,6 @@ export const Tags = ({ tagsItems }) => {
   const handleListItemClick = (e, i, name) => {
     dispatch(fetchPostsWithTag(name))
     setSelectedIndex(i);
-    console.log(name);
   };
 //   useEffect((name, i) => {
 //     dispatch(fetchPostsWithTag(name))

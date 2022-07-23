@@ -5,12 +5,11 @@ import { Link } from 'react-router-dom'
 import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Clear'
 import EditIcon from '@mui/icons-material/Edit'
-import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined'
-import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined'
 import styles from './Post.module.scss'
-import { fetchRemovePost } from '../../../redux/slices/posts'
+import { fetchPostsWithTag, fetchRemovePost } from '../../../redux/slices/posts'
 import { PostCreationInfo } from '../../../components/PostInfo/PostCreationInfo'
 import { CountWithIcon } from '../../../components/PostInfo/CountWithIcon'
+import { ListItemButton } from '@mui/material'
 
 
 export const Post = ({
@@ -29,6 +28,11 @@ export const Post = ({
   const countsData = {
     viewsCount,
     commentsCount
+  }
+
+  const onClickTag = (value) => {
+    console.log(value);
+    dispatch(fetchPostsWithTag(value))
   }
 
   return (
@@ -61,10 +65,19 @@ export const Post = ({
           <ul className={styles.tags}>
             {postItem.tags.map((name) => (
               <li key={name}>
-                <Link to={`/tag/${name}`}>#{name}</Link>
+                <ListItemButton key={name} onClick={(name) => onClickTag(name)}>#{name}</ListItemButton>
               </li>
             ))}
           </ul>
+          {/*
+          to={`/tag/${name}`}
+          <ul className={styles.tags}>
+            {postItem.tags.map((name) => (
+              <li key={name}>
+                <Link to={`/tag/${name}`}>#{name}</Link>
+              </li>
+            ))}
+          </ul> */}
           <CountWithIcon countsData={countsData} />
         </div>
       </div>
