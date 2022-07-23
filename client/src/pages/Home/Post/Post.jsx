@@ -9,7 +9,8 @@ import styles from './Post.module.scss'
 import { fetchPostsWithTag, fetchRemovePost } from '../../../redux/slices/posts'
 import { PostCreationInfo } from '../../../components/PostInfo/PostCreationInfo'
 import { CountWithIcon } from '../../../components/PostInfo/CountWithIcon'
-import { ListItemButton } from '@mui/material'
+import { Button } from '@mui/material'
+import { Tags } from '../../../components/TagsBlock/Tags'
 
 
 export const Post = ({
@@ -64,8 +65,8 @@ export const Post = ({
           </h2>
           <ul className={styles.tags}>
             {postItem.tags.map((name) => (
-              <li key={name}>
-                <ListItemButton key={name} onClick={(name) => onClickTag(name)}>#{name}</ListItemButton>
+              <li key={name} >
+                <Button onClick={(name) => onClickTag(name)} key={name} >#{name}</Button>
               </li>
             ))}
           </ul>
@@ -78,7 +79,10 @@ export const Post = ({
               </li>
             ))}
           </ul> */}
-          <CountWithIcon countsData={countsData} />
+          <Tags className={styles.tagsInPost} tagsItems={postItem.tags} />
+
+
+            <CountWithIcon countsData={countsData} />
         </div>
       </div>
     </div>
