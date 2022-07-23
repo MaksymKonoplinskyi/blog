@@ -26,7 +26,7 @@ export const CommentEditMenu = ({ curentComment, index }) => {
   }
 
   return (
-    <div>
+
       <div className="editButtons">
         <IconButton onClick={onClickEdit} color="primary">
           <EditIcon />
@@ -37,6 +37,6 @@ export const CommentEditMenu = ({ curentComment, index }) => {
         </IconButton>
       </div>
 
-    </div>
+
   )
 }
