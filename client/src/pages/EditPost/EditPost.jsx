@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import SimpleMDE from 'react-simplemde-editor';
 
 import 'easymde/dist/easymde.min.css';
-import styles from './EditPost.module.css';
+import styles from './EditPost.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsAuth } from "../../redux/slices/auth";
 import { useNavigate, Navigate, useParams, Link } from 'react-router-dom';
@@ -44,26 +44,13 @@ export const AddPost = () => {
     setImageUrl('')
   };
 
-
-  // const onSubmit = async (values) => {
-  //   const data = await dispatch(fetchAuth(values))
-
-  //   if (!data.payload) {
-  //     return alert('Не удалось авторизироваться')
-  //   }
-
-  //   if ('token' in data.payload) {
-  //     window.localStorage.setItem('token', data.payload.token)
-  //   }
-  // }
-
-
   const onChange = React.useCallback((text) => {
     setText(text);
   }, []);
 
-
-
+ const onCancel = () =>{
+  navigate(`/`)
+ }
 
   const onSubmit = async () => {
     try {
@@ -76,12 +63,6 @@ export const AddPost = () => {
         tags,
       }
       const patchData = { id, fields }
-      // const { data2 } = await dispatch(fetchCriateNewPost(fields));
-
-      // const { data } = await dispatch(fetchEditPost(patchData));
-      // console.log(data);
-
-
       const data = isEditing
         ? await dispatch(fetchEditPost(patchData))
         : await dispatch(fetchCriateNewPost(fields))
@@ -115,17 +96,17 @@ export const AddPost = () => {
       maxHeight: '200px',
       autofocus: true,
       placeholder: 'Введите текст...',
-      //status: true,
+      status: true,
       autosave: {
         enabled: true,
         delay: 1000,
         uniqueId: 'postText',
       },
-      //autoRefresh:{ delay: 300 },
-      //previewImagesInEditor: true,
-      //previewRender: (text) => {'text'},
-      //imageMaxSize:1024*1024*2,
-      //sideBySideFullscreen:false,
+      // autoRefresh:{ delay: 300 },
+      // previewImagesInEditor: true,
+      // previewRender: (text) => {'text'},
+      // imageMaxSize:1024*1024*2,
+      // sideBySideFullscreen:false,
       // forceSync: true,
       //      renderingConfig: {
       //   codeSyntaxHighlighting: true,
@@ -154,10 +135,7 @@ export const AddPost = () => {
           <img className={styles.image} src={`http://localhost:4444${imageUrl}`} alt="Uploaded" />
         </>
       )}
-      {/* <div className='title'>1111</div> */}
 
-      <br />
-      <br />
       <TextField
       className='title'
         classes={{ root: styles.title }}
@@ -179,9 +157,8 @@ export const AddPost = () => {
         <Button onClick={onSubmit} size="large" variant="contained">
           {isEditing ? 'Сохранить' : 'Опубликовать'}
         </Button>
-        <Link to="/">
-          <Button size="large" variant="contained">Отмена</Button>
-        </Link>
+          <Button onClick={onCancel} size="large" variant="contained">Отмена</Button>
+
       </div>
     </Paper>
 
