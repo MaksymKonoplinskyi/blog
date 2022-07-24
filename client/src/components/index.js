@@ -1,4 +1,4 @@
 export * from "./TagsBlock/TagsBlock";
-export * from "./SideBlock/SideBlock";
+export * from "./TagsBlock/SideBlock";
 export * from "./Header/Header";
 

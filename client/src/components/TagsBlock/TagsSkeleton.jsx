@@ -8,7 +8,7 @@ export const TagsSkeleton = () => {
     return (
         <>
             <List>
-                {[...Array(5)].map((name, i) => (
+                {[...Array(5)].map((i) => (
                     <ListItem disablePadding key={i} >
                         <ListItemButton >
                             <ListItemIcon >

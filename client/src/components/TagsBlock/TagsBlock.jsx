@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchTags } from "../../redux/slices/allTags"
 import { TagsSkeleton } from "./TagsSkeleton"
 import { Tags } from "./Tags"
-import { SideBlock } from "../SideBlock/SideBlock"
+import { SideBlock } from "./SideBlock"
 
 
 export const TagsBlock = () => {
